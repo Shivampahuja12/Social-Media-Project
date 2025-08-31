@@ -156,7 +156,7 @@ div.rightsection1 {
 }
 
 .section2 .subsection1 .leftofss1{
-    border: 1px solid yellow;
+    /* border: 1px solid yellow; */
     height: 100%;
     width: 50%;
     display: flex;
@@ -171,7 +171,7 @@ div.rightsection1 {
 }
 
 .rightofss1 {
-    border: 1px solid rgb(27, 27, 20);
+    /* border: 1px solid rgb(27, 27, 20); */
     height: 100%;
     width: 50%;
     display: flex;
@@ -203,7 +203,7 @@ div.rightsection1 {
 .leftofss2 {
     height: 100%;
     width: 50%;
-    border: 2px solid maroon;
+    /* border: 2px solid maroon; */
     display: flex;
     flex-direction: column;
     /* align-items: center; */
@@ -223,7 +223,7 @@ div.rightsection1 {
 .rightofss2 {
     height: 100%;
     width: 50%;
-    border: 2px solid maroon;
+    /* border: 2px solid maroon; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -240,14 +240,101 @@ div.rightsection1 {
     font-weight: 700;
 }
 
+.subsection3 {
+    display: flex;
+    height: 25%;
+    width: 100%;
+    /* padding: 6rem;
+    padding-right: 6rem; */
+}
+
+.leftofss3 {
+    height: 100%;
+    /* border: 3px solid lavender; */
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 8rem;
+    
+}
+
+.leftofss3 img {
+    height: 23rem;
+    border-radius: 20%;
+}
+
+.rightofss3 {
+    /* border: 3px solid lavender; */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    padding: 8rem 12rem 8rem 3rem;
+    gap: 2rem;
+
+}
+
+.subsection4 {
+    height: 18%;
+    width: 100%;
+    display: flex;
+
+}
+
+.leftofss4 {
+    height: 100%;
+    width: 50%;
+    /* border: 2px solid maroon; */
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center; 
+    padding: 8rem 3rem 15rem 18rem;
+    gap: 2rem;
+}
+
+.leftofss4 h2 {
+    font-size: 2.4rem;
+}
+
+.leftofss4 p {
+    font-size: 1.2rem;
+}
+
+.rightofss4 {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    /* align-items: top; */
+
+}
+
+.rightofss4 img {
+    height: 20rem;
+    border-radius: 20%;
+}
+
+
+.rightofss3 h2 {
+    font-size: 2.4rem;
+}
+
+.rightofss3 p {
+    font-size: 1.2rem;
+}
+
+
 .section3 {
     height: 18%;
     width: 100%;
     background-color: black;
+    color: white;
 }
-
+    
 .section4 {
     height: 22%;
     width: 100%;
     background-color: yellow;
-} 
+}
