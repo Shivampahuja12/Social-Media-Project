@@ -71,10 +71,6 @@ div.rightnav .underline:hover {
 .navbutton {
     color: white !important; 
     border: 2px solid var(--main);
-    /* border-top-left-radius: 50%;
-    border-bottom-left-radius: 50%;
-    border-top-right-radius: 50%;
-    border-bottom-right-radius: 50%; */
     border-radius: 100px;
     padding: 19px;
     background-color: var(--main);
@@ -88,6 +84,14 @@ div.rightnav .underline:hover {
     background-color: white;
     color: var(--main) !important;
 
+}
+
+.reddixpress:hover {
+    background-color: black;
+}
+
+.reddixpress {
+    font-weight: 600;
 }
 
 img.robo {
@@ -331,10 +335,68 @@ div.rightsection1 {
     width: 100%;
     background-color: black;
     color: white;
-}
+    padding: 20rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    justify-content: center;
+    /* align-items: center; */
     
+}
+
+.section3 h2 {
+    
+    font-size: 3rem;
+}
+
+.section3para {
+    font-size: 1.3rem;
+}
+
+.box p {
+    font-size: 1.1rem;
+    
+}
+.box h2 {
+    color: var(--main);
+}
+
+.box {
+    border: 1px solid white;
+    border-radius: 20px;
+    padding: 2rem;
+    color: black;
+    background-color: #fff;
+}
+
+.boxes {
+    display: flex;
+    gap: 2rem;
+
+}
+
+
+
 .section4 {
     height: 22%;
     width: 100%;
-    background-color: yellow;
+    background-color: white;
+    /* display: flex;
+    flex-direction:column; */
+}
+
+.section4 div {
+    display: flex;
+    height: 2rem;
+    width: 10rem;
+}
+
+.twoboxes {
+    height: 2rem;
+    width: 3rem;
+    border: 1px solid black;
+}
+
+footer {
+    background-color: black;
 }
