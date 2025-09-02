@@ -381,20 +381,60 @@ div.rightsection1 {
     height: 22%;
     width: 100%;
     background-color: white;
-    /* display: flex;
-    flex-direction:column; */
+    
 }
 
-.section4 div {
+.section4 h1 {
+    height: 10%;
+}
+
+.section4div1 {
     display: flex;
-    height: 2rem;
-    width: 10rem;
+    height: 25%;
 }
 
-.twoboxes {
-    height: 2rem;
-    width: 3rem;
-    border: 1px solid black;
+
+.section4div2 {
+    display: flex;
+    height: 25%;
+}
+
+.topleftofs4 {
+    box-sizing: border-box;
+    /* height: 100%; */
+}
+
+.topleftofs4 img {
+    height: 100%;
+    width: 100%;
+}
+
+.toprightofs4 img {
+    height: 100%;
+    width: 100%;
+}
+
+.bottomleftofs4 img {
+    height: 100%;
+    width: 100%;
+}
+
+.bottomrightofs4 img {
+    height: 100%;
+    width: 100%;
+}
+
+.twoboxestop {
+    height: 100%;
+    width: 30%;
+    /* border: 1px solid black;  */
+}
+
+.twoboxesbottom {
+    height: 100%;
+    width: 30%;
+    /* border: 1px solid black;  */
+    
 }
 
 footer {
