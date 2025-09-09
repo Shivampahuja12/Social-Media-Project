@@ -1,0 +1,143 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #000000;
+  color: #ffffff;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #000000;
+  padding: 2vh 4vw;
+  border-bottom: 0.2vh solid #eee;
+}
+
+.logo img {
+  width: 5vh;
+  height: 5vh;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.nav a {
+  margin: 0 2vw;
+  text-decoration: none;
+  font-weight: bold;
+  color: #ffffff;
+  font-size: 1.2vw;
+}
+
+.header-right {
+  display: flex;
+  align-items: center; 
+  gap: 2vw;
+}
+
+.request-btn {
+  background: #dcff8c;
+  color: #000000;
+  border: none;
+  padding: 1vh 2vw;
+  border-radius: 1vw;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
+  font-size: 1vw;
+}
+
+.request-btn:hover {
+  background: #b8f623;
+}
+
+.lang-select {
+  padding: 0.8vh 1.2vw;
+  border-radius: 0.8vw;
+  border: 0.2vh solid #ddd;
+  font-size: 1vw;
+}
+
+.hero {
+  background: #b8f623;
+  text-align: left;
+  padding: 8vh 8vw;
+  position: relative;
+}
+
+.announcement {
+  display: inline-block;
+  background: #000000;
+  border: 0.4vh solid #e3f09d;
+  padding: 2vh 2vw;
+  border-radius: 1.5vw;
+  font-weight: bold;
+  margin-bottom: 3vh;
+  font-size: 1.2vw;
+}
+
+.hero-title {
+  font-size: 5vw;
+  color:#000000;
+  margin: 2vh 0 1vh 0;
+  font-weight: bold;
+}
+
+.hero-subtitle {
+  font-size: 1.6vw;
+  color:#000000;
+  margin-bottom: 4vh;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 50px;
+  padding: 1.5vh 1vw;
+  width: 50vw;
+  max-width: 90%;
+  box-shadow: 0 0.5vh 1vh rgba(0,0,0,0.1);
+}
+
+.search-icon {
+  font-size: 1.6vw;
+  margin: 0 1vw;
+  color: #333;
+}
+
+.search-box input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 1.2vw;
+  padding: 1vh 1vw;
+}
+
+.search-box button {
+  background: #000;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 1.2vh 2vw;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1vw;
+}
+
+.search-box button:hover {
+  background: #333;
+}
+
+.hero-image {
+  position: absolute;
+  right: 5vw;
+  bottom: 0;
+}
+
+.hero-image img {
+  width: 25vw;
+  height: 30vh;
+  border-radius: 50%;
+  object-fit: cover;
+}

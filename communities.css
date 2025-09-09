@@ -1,0 +1,159 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background: #5e5454;
+  color: #333;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2vh 5vw;
+  background: #000000;
+  color: #ffffff;
+}
+
+.logo {
+  height: 5vh;
+  width: auto;
+  margin-right: 1vw;
+  border-radius: 50%;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.header-left h2 {
+  font-size: 2vw;
+}
+
+.header-right .header-btn {
+  margin-left: 2vw;
+  color: #ff4500;
+  background: #fff;
+  padding: 1vh 2vw;
+  border-radius: 2vw;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s;
+  font-size: 1vw;
+}
+
+.header-right .header-btn:hover {
+  background: #f1f1f1;
+}
+
+.hero {
+  text-align: center;
+  padding: 8vh 5vw;
+  background: linear-gradient(135deg, #ff4500, #ff9a76);
+  color: #fff;
+}
+
+.hero h1 {
+  font-size: 4vw;
+  margin-bottom: 1vh;
+}
+
+.hero p {
+  font-size: 1.5vw;
+  margin-bottom: 3vh;
+}
+
+.searchbox {
+  display: flex;
+  justify-content: center;
+}
+
+.searchbox input {
+  padding: 1.5vh;
+  border: none;
+  border-radius: 2vw 0 0 2vw;
+  width: 25vw;
+  font-size: 1vw;
+}
+
+.searchbox button {
+  padding: 1.5vh 2vw;
+  border: none;
+  border-radius: 0 2vw 2vw 0;
+  background: #fff;
+  color: #ff4500;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1vw;
+}
+
+.communities {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20vw, 1fr));
+  gap: 3vw;
+  padding: 5vh 5vw;
+}
+
+.community-card {
+  background: #fff;
+  border-radius: 1.5vw;
+  box-shadow: 0 0.5vh 1.5vh rgba(0,0,0,0.1);
+  padding: 2vh 2vw;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.community-card:hover {
+  transform: translateY(-1vh);
+  background: #fffefc;
+  box-shadow: 0 0.8vh 2vh rgba(255, 64, 0, 0.99);
+}
+
+.community-card img {
+  width: 100%;
+  border-radius: 1vw;
+  margin-bottom: 2vh;
+}
+
+.community-card h3 {
+  margin-bottom: 1vh;
+  color: #ff4500;
+  font-size: 1.5vw;
+}
+
+.community-card p {
+  font-size: 1vw;
+  margin-bottom: 1vh;
+}
+
+.community-card a {
+  display: inline-block;
+  margin-top: 2vh;
+  padding: 1vh 2vw;
+  background: #ff4500;
+  color: #fff;
+  border-radius: 2vw;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s;
+  font-size: 1vw;
+}
+
+.community-card a:hover {
+  background: #e03e00;
+  transform: scale(1.05);
+  box-shadow: 0 0.5vh 1.5vh rgba(255, 68, 0, 0.9);
+}
+
+.footer {
+  text-align: center;
+  padding: 2vh;
+  background: #333;
+  color: #fff;
+  font-size: 1vw;
+}
