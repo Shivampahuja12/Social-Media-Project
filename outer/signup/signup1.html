@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up with Avatar</title>
+    <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Avatar Customization Section -->
+        <div class="avatar-section">
+            <div class="avatar-preview">
+                <div class="avatar-initials">JD</div>
+                <img id="avatar-image" class="avatar-image" src="" alt="Avatar">
+            </div>
+            
+            <div class="avatar-controls">
+                <div class="avatar-option">
+                    <h3>Choose Color</h3>
+                    <div class="color-options">
+                        <div class="color-option" style="background-color: #6c5ce7;" onclick="changeAvatarColor('#6c5ce7')"></div>
+                        <div class="color-option" style="background-color: #00b894;" onclick="changeAvatarColor('#00b894')"></div>
+                        <div class="color-option" style="background-color: #fd79a8;" onclick="changeAvatarColor('#fd79a8')"></div>
+                        <div class="color-option" style="background-color: #fdcb6e;" onclick="changeAvatarColor('#fdcb6e')"></div>
+                        <div class="color-option" style="background-color: #0984e3;" onclick="changeAvatarColor('#0984e3')"></div>
+                    </div>
+                </div>
+                
+                <div class="avatar-option">
+                    <h3>Upload Photo</h3>
+                    <input type="file" id="avatar-upload" accept="image/*" style="display: none;">
+                    <button class="upload-btn" onclick="document.getElementById('avatar-upload').click()">Choose Image</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Sign Up Form Section -->
+        <div class="form-section">
+            <h2>Create Account</h2>
+            <form>
+                <div class="form-group">
+                    <label for="fullname">Full Name</label>
+                    <input type="text" id="fullname" placeholder="Enter your full name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="Choose a username" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Create a password" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" placeholder="Confirm your password" required>
+                </div>
+                
+                <button type="submit" class="signup-btn">Sign Up</button>
+                
+                <div class="login-link">
+                    Already have an account? <a href="#">Log in</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Avatar customization functionality
+        function changeAvatarColor(color) {
+            document.querySelector('.avatar-preview').style.backgroundColor = color;
+        }
+
+        // Handle image upload
+        document.getElementById('avatar-upload').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const avatarImage = document.getElementById('avatar-image');
+                    avatarImage.src = event.target.result;
+                    avatarImage.style.display = 'block';
+                    document.querySelector('.avatar-initials').style.display = 'none';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Update initials when name is typed
+        document.getElementById('fullname').addEventListener('input', function(e) {
+            const name = e.target.value.trim();
+            if (name.length > 0) {
+                const initials = name.split(' ').map(part => part[0]).join('').toUpperCase();
+                document.querySelector('.avatar-initials').textContent = initials.substring(0, 2);
+            } else {
+                document.querySelector('.avatar-initials').textContent = 'JD';
+            }
+        });
+    </script>
+</body>
+</html>
