@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReddiX - Enhanced Posts</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #0f0f10;
+            color: #D7DADC;
+            padding: 20px;
+        }
+        
+        .partion-2 {
+            background-color: #0f0f10;
+            padding: 20px 0;
+        }
+        
+        .main-conatiner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .post-container {
+            background-color: #1A1A1B;
+            border-radius: 8px;
+            width: 100%;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid #343536;
+        }
+        
+        .post-container:hover {
+            border-color: #4f4f50;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .logo-text-div,
+        .desc-div,
+        .img-div-post,
+        .like-unlike,
+        .space {
+            padding: 0 1.5rem;
+        }
+        
+        .logo-text-div {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            padding-bottom: 0.5rem;
+        }
+        
+        .left-side-div {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .left-side-div > img {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .left-side-div > h5 {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #D7DADC;
+        }
+        
+        #dot {
+            color: #818384;
+            font-size: 1.2rem;
+            line-height: 0;
+            margin: 0 4px;
+        }
+        
+        .left-side-div > p {
+            font-size: 0.75rem;
+            color: #818384;
+        }
+        
+        .rightside-div {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .join {
+            background-color: #1484D6;
+            color: white;
+            padding: 4px 16px;
+            border: none;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .join:hover {
+            background-color: #0C69AC;
+        }
+        
+        .rightside-div a img {
+            width: 20px;
+            height: 20px;
+            filter: invert(0.6);
+            transition: all 0.2s ease;
+            padding: 4px;
+            border-radius: 4px;
+        }
+        
+        .rightside-div a img:hover {
+            filter: invert(0.9);
+            background-color: #343536;
+        }
+        
+        .desc-div {
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
+        
+        .desc-div > p {
+            font-size: 1.1rem;
+            color: #D7DADC;
+            line-height: 1.4;
+            font-weight: 500;
+        }
+        
+        .img-div-post {
+            background: linear-gradient(to bottom, #1A1A1B, #0f0f10);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+            margin: 0.5rem 0;
+            overflow: hidden;
+        }
+        
+        .img-div-post > img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .img-div-post > img:hover {
+            transform: scale(1.02);
+        }
+        
+        .like-unlike {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding-top: 0.8rem;
+            padding-bottom: 0.8rem;
+        }
+        
+        .cursor {
+            width: 22px;
+            height: 22px;
+            filter: invert(0.7);
+            transition: all 0.2s ease;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 4px;
+        }
+        
+        .cursor:hover {
+            filter: invert(0.9);
+            background-color: #343536;
+            transform: scale(1.1);
+        }
+        
+        .space {
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
+        
+        .space > hr {
+            border: none;
+            height: 1px;
+            background-color: #343536;
+            margin: 0;
+        }
+        
+        /* Vote count and comment stats */
+        .post-stats {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0 1.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 0.8rem;
+            color: #818384;
+        }
+        
+        .vote-count {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .comment-count {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .main-conatiner {
+                gap: 1rem;
+            }
+            
+            .post-container {
+                width: 95%;
+            }
+            
+            .logo-text-div,
+            .desc-div,
+            .img-div-post,
+            .like-unlike,
+            .space {
+                padding: 0 1rem;
+            }
+            
+            .img-div-post > img {
+                max-height: 300px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .img-div-post > img {
+                max-height: 250px;
+            }
+            
+            .desc-div > p {
+                font-size: 1rem;
+            }
+            
+            .rightside-div {
+                gap: 8px;
+            }
+            
+            .join {
+                padding: 4px 12px;
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="partion-2">
+        <div class="main-conatiner">
+            <div class="post-container">
+                <div class="logo-text-div">
+                    <div class="left-side-div">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2ZmNTcwMCI+PHBhdGggZD0iTTEyIDBDNS4zNzMgMCAwIDUuMzczIDAgMTJzNS4zNzMgMTIgMTIgMTIgMTItNS4zNzMgMTItMTJTMTguNjI3IDAgMTIgMHptMCAyMmMtNS41MjQgMC0xMC00LjQ3Ni0xMC0xMHM0LjQ3Ni0xMCAxMC0xMCAxMCA0LjQ3NiAxMCAxMC00LjQ3NiAxMC0xMCAxMHptMC0xOGMtNC40MTEgMC04IDMuNTg5LTggOHMzLjU4OSA4IDggOCA4LTMuNTg5IDgtOC0zLjU4OS04LTgtOHptMCAxNGMtMy4zMTMgMC02LTIuNjg3LTYtNnMyLjY4Ny02IDYtNiA2IDIuNjg3IDYgNi0yLjY4NyA2LTYgNnoiLz48L3N2Zz4=" alt="Subreddit Icon"> 
+                        <h5>r/SportsIndia</h5>
+                        <p><sup id="dot">·</sup>4 days ago</p>
+                    </div>
+                    <div class="rightside-div">
+                        <button class="join">Join</button>
+                        <a href="#"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2Q3ZGFkYyI+PGNpcmNsZSBjeD0iMTIiIGN5PSI3IiByPSIyIi8+PGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMiIvPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTciIHI9IjIiLz48L3N2Zz4=" alt="More options"></a>
+                    </div>
+                </div>
+
+                <div class="desc-div">
+                    <p>Virat Kohli retires after scoring 9230 runs in test cricket</p>
+                </div>
+
+                <div class="img-div-post">
+                    <img src="https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Virat Kohli">
+                </div>
+
+                <div class="post-stats">
+                    <div class="vote-count">
+                        <i class="fas fa-arrow-up" style="color: #818384; font-size: 12px;"></i>
+                        <span>2.4k</span>
+                    </div>
+                    <div class="comment-count">
+                        <i class="far fa-comment" style="color: #818384; font-size: 12px;"></i>
+                        <span>347</span>
+                    </div>
+                </div>
+
+                <div class="like-unlike">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2Q3ZGFkYyI+PHBhdGggZD0iTTEyIDIxLjM1bC0xLjQ1LTEuMzJDNS40IDE1LjM2IDIgMTIuMjggMiA4LjUgMiA1LjQyIDQuNDIgMyA3LjUgM2MxLjc0IDAgMy40MS44MSA0LjUgMi4wOEMxMy4wOSAzLjgxIDE0Ljc2IDMgMTYuNSAzIDE5LjU4IDMgMjIgNS40MiAyMiA4LjVjMCAzLjc4LTMuNCA2Ljg2LTguNTUgMTEuNTRMMTIgMjEuMzV6Ii8+PC9zdmc+" alt="Like" class="cursor">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2Q3ZGFkYyI+PHBhdGggZD0iTTIxIDExLjVhOC4zOCA4LjM4IDAgMCAxLS45IDMuOCA4LjUgOC41IDAgMCAxLTcuNiA0LjcgOC4zOCA4LjM4IDAgMCAxLTMuOC0uOUwxIDIxbDQuNS00LjFhOC4zOCA4LjM4IDAgMCAxLS45LTMuOCA4LjUgOC41IDAgMCAxIDQuNy03LjYgOC4zOCA4LjM4IDAgMCAxIDMuOC0uOWMuOS4xIDEuNi4xIDIuMy4xczEuNCAwIDIuMy4xYTguNCA4LjQgMCAwIDEgMy44LjkgOC41IDguNSAwIDAgMSA0LjcgNy42YzAuMzMuOS41IDEuOC41IDIuM3oiLz48L3N2Zz4=" alt="Comment" class="cursor">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2Q3ZGFkYyI+PHBhdGggZD0iTTE3IDNIN2MtMS4xIDAtMiAuOS0yIDJ2MTZjMCAxLjEuOSAyIDIgMmgxMGMxLjEgMCAyLS45IDItMlY1YzAtMS4xLS45LTItMi0yem0wIDE4SDdWNWgxMHYxNnptLTUtNWEyLjUgMi41IDAgMCAwIDAtNSAyLjUgMi41IDAgMCAwIDAgNXoiLz48L3N2Zz4=" alt="Save" class="cursor">
+                </div>
+
+                <div class="space">
+                    <hr>
+                </div>
+            </div>
+
+            <div class="post-container">
+                <div class="logo-text-div">
+                    <div class="left-side-div">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzE0ODRENiI+PHBhdGggZD0iTTEyIDJDNi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTAgMTAtNC40OCAxMC0xMFMxNy41MiAyIDEyIDJ6bTAgMThjLTQuNDIgMC04LTMuNTgtOC04czMuNTgtOCA4LTggOCAzLjU4IDggOC0zLjU4IDgtOCA4eiIvPjxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz48cGF0aCBkPSJNMTIuNSA3SDExdjZsNSA0IDItMi41LTQtMy41eiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg==" alt="Cricket Icon"> 
+                        <h5>r/Cricket</h5>
+                        <p><sup id="dot">·</sup>1 day ago</p>
+                    </div>
+                    <div class="rightside-div">
+                        <button class="join">Joined</button>
+                        <a href="#"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2Q3ZGFkYyI+PGNpcmNsZSBjeD0iMTIiIGN5PSI3IiByPSIyIi8+PGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMiIvPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTciIHI9IjIiLz48L3N2Zz4=" alt="More options"></a>
+                    </div>
+                </div>
+
+                <div class="desc-div">
+                    <p>India wins the test series against England 4-1 with dominant performance</p>
+                </div>
+
+                <div class="img-div-post">
+                    <img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Cricket Match">
+                </div>
+
+                <div class="post-stats">
+                    <div class="vote-count">
+                        <i class="fas fa-arrow-up" style="color: #818384; font-size: 12px;"></i>
+                        <span>5.7k</span>
+                    </div>
+                    <div class="comment-count">
+                        <i class="far fa-comment" style="color: #818384; font-size: 12px;"></i>
+                        <span>892</span>
+                    </div>
+                </div>
+
+                <div class="like-unlike">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2Q3ZGFkYyI+PHBhdGggZD0iTTEyIDIxLjM1bC0xLjQ1LTEuMzJDNS40IDE1LjM2IDIgMTIuMjggMiA4LjUgMiA1LjQyIDQuNDIgMyA3LjUgM2MxLjc0IDAgMy40MS44MSA0LjUgMi4wOEMxMy4wOSAzLjgxIDE4Ljc2IDMgMTYuNSAzIDE5LjU4IDMgMjIgNS40MiAyMiA4LjVjMCAzLjc4LTMuNCA2Ljg2LTguNTUgMTEuNTRMMTIgMjEuMzV6Ii8+PC9zdmc+" alt="Like" class="cursor">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2Q3ZGFkYyI+PHBhdGggZD0iTTIxIDExLjVhOC4zOCA4LjM4IDAgMCAxLS45IDMuOCA4LjUgOC41IDAgMCAxLTcuNiA0LjcgOC4zOCA8LjM4IDAgMCAxLTMuOC0uOUwxIDIxbDQuNS00LjFhOC4zOCA4LjM4IDAgMCAxLS45LTMuOCA4LjUgOC41IDAgMCAxIDQuNy03LjYgOC4zOCA4LjM4IDAgMCAxIDMuOC0uOWMuOS4xIDEuNi4xIDIuMy4xczEuNCAwIDIuMy4xYTguNCA4LjQgMCAwIDEgMy44LjkgOC41IDguNSAwIDAgMSA0LjcgNy42YzAuMzMuOS41IDEuOC41IDIuM3oiLz48L3N2Zz4=" alt="Comment" class="cursor">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2Q3ZGFkYyI+PHBhdGggZD0iTTE3IDNIN2MtMS4xIDAtMiAuOS0yIDJ2MTZjMCAxLjEuOSAyIDIgMmgxMGMxLjEgMCAyLS45IDItMlY1YzAtMS4xLS45LTItMi0yem0wIDE4SDdWNWgxMHYxNnptLTUtNWEyLjUgMi41IDAgMCAwIDAtNSAyLjUgMi41IDAgMCAwIDAgNXoiLz48L3N2Zz4=" alt="Save" class="cursor">
+                </div>
+
+                <div class="space">
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Interactive join buttons
+        document.querySelectorAll('.join').forEach(button => {
+            button.addEventListener('click', function() {
+                if (this.textContent === 'Join') {
+                    this.textContent = 'Joined';
+                    this.style.backgroundColor = '#343536';
+                } else {
+                    this.textContent = 'Join';
+                    this.style.backgroundColor = '#1484D6';
+                }
+            });
+        });
+
+        // Interactive like button
+        document.querySelectorAll('.cursor').forEach(icon => {
+            icon.addEventListener('click', function() {
+                if (this.alt === 'Like') {
+                    this.classList.toggle('liked');
+                    if (this.classList.contains('liked')) {
+                        this.style.filter = 'invert(52%) sepia(89%) saturate(2522%) hue-rotate(350deg) brightness(102%) contrast(105%)';
+                    } else {
+                        this.style.filter = 'invert(0.7)';
+                    }
+                } else if (this.alt === 'Save') {
+                    this.classList.toggle('saved');
+                    if (this.classList.contains('saved')) {
+                        this.style.filter = 'invert(76%) sepia(40%) saturate(665%) hue-rotate(358deg) brightness(102%) contrast(102%)';
+                    } else {
+                        this.style.filter = 'invert(0.7)';
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
