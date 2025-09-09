@@ -1,0 +1,142 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #000000;
+  color: #ffffff;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #000000;
+  padding: 2vh 4vw;
+  border-bottom: 0.2vh solid #eee;
+}
+
+.logo img {
+  width: 4vw;
+  height: 4vw;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.nav a {
+  margin: 0 2vw;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.2vw;
+  color: #ffffff;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5vw;
+}
+
+.request-btn {
+  background: #ffd875;
+  color: #000000;
+  border: none;
+  padding: 1vh 2vw;
+  border-radius: 0.6vw;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
+  font-size: 1vw;
+}
+
+.request-btn:hover {
+  background: #FFB800;
+}
+
+.lang-select {
+  padding: 0.8vh 1.2vw;
+  border-radius: 0.5vw;
+  border: 0.1vh solid #ddd;
+  font-size: 1vw;
+}
+
+.hero {
+  background: #FFB800;
+  text-align: left;
+  padding: 8vh 8vw;
+  position: relative;
+  min-height: 80vh;
+}
+
+.announcement {
+  display: inline-block;
+  background: #000000;
+  border: 0.3vh solid #e3f09d;
+  padding: 1.5vh 2vw;
+  border-radius: 1vw;
+  font-weight: bold;
+  margin-bottom: 3vh;
+  font-size: 1.2vw;
+}
+
+.hero-title {
+  font-size: 5vw;
+  color:#000000;
+  margin: 3vh 0 1vh 0;
+  font-weight: bold;
+}
+
+.hero-subtitle {
+  font-size: 2vw;
+  color:#000000;
+  margin-bottom: 4vh;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 50px;
+  padding: 1vh 1vw;
+  width: 50vw;
+  max-width: 90%;
+  box-shadow: 0 0.5vh 1vh rgba(0,0,0,0.1);
+}
+
+.search-icon {
+  font-size: 2vw;
+  margin: 0 1vw;
+}
+
+.search-box input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 1.2vw;
+}
+
+.search-box button {
+  background: #000;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 1vh 2vw;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1.2vw;
+}
+
+.search-box button:hover {
+  background: #333;
+}
+
+.hero-image {
+  position: absolute;
+  right: 5vw;
+  bottom: 0;
+}
+
+.hero-image img {
+  width: 25vw;
+  height: 30vh;
+  border-radius: 50%;
+  object-fit: cover;
+}
