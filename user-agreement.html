@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reddix User Agreement</title>
+  <style>
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.7;
+      margin: 0;
+      padding: 0;
+      background-color: #1a1a2e;
+      color: #e0e0e0;
+      background-image: radial-gradient(#2c2c54 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+
+    .page-header {
+      background: linear-gradient(135deg, #28a745, #218838);
+      color: white;
+      padding: 4rem 2rem;
+      text-align: center;
+      border-bottom: 5px solid #218838;
+      clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+    }
+
+    .logo {
+      max-width: 140px;
+      margin-bottom: 1.5rem;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+    }
+
+    .page-header h1 {
+      margin: 0;
+      font-size: 3.5rem;
+      font-weight: 800;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .page-header p {
+      margin-top: 0.5rem;
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+
+    .content {
+      max-width: 900px;
+      margin: -2rem auto 3rem auto;
+      padding: 0 1.5rem;
+      position: relative;
+    }
+
+    .intro-text {
+      font-size: 1.15rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 2rem;
+      background-color: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      animation: fadeIn 0.5s ease-out forwards;
+    }
+
+    section.agreement-card {
+      background-color: rgba(255, 255, 255, 0.05);
+      margin-bottom: 2rem;
+      padding: 2.5rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeIn 0.5s ease-out forwards;
+      animation-delay: calc(var(--i) * 0.1s);
+      opacity: 0;
+    }
+
+    section.agreement-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+    }
+    
+    .agreement-icon {
+      flex-shrink: 0;
+      width: 50px;
+      height: 50px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #28a745, #218838);
+      border-radius: 50%;
+      color: white;
+    }
+
+    .agreement-icon svg {
+      width: 24px;
+      height: 24px;
+    }
+    
+    .agreement-content h2 {
+      color: #34d058;
+      border: none;
+      padding-bottom: 0;
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+      font-size: 1.5rem;
+    }
+
+    .agreement-content p {
+      margin-bottom: 0;
+      font-size: 1.05rem;
+      color: #c0c0c0;
+    }
+
+  </style>
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="page-header">
+        <img src="https://i.imgur.com/J4p3p7g.png" alt="Reddix Logo" class="logo">
+        <h1>Reddix User Agreement</h1>
+        <p>The terms of service for our community. Effective September 2025.</p>
+      </header>
+
+  <main class="content">
+     <p class="intro-text">
+        Hello, and welcome to Reddix! This User Agreement ("Terms") applies to your access to and use of our websites, apps, and other online services. By using our services, you agree to be bound by these Terms.
+    </p>
+
+    <section class="agreement-card" style="--i:1;">
+        <div class="agreement-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9 14H6v-2h6v2zm3-4H6v-2h9v2zm0-4H6V7h9v2z"/></svg>
+        </div>
+        <div class="agreement-content">
+            <h2>1. Your Access to the Services</h2>
+            <p>Remember Reddix is intended for connection and entertainment, but we need rules. By accessing our Services, you agree to these Terms. If you do not agree, you may not use our Services.</p>
+        </div>
+    </section>
+
+    <section class="agreement-card" style="--i:2;">
+      <div class="agreement-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+      </div>
+      <div class="agreement-content">
+        <h2>2. Your Reddix Account</h2>
+        <p>You are responsible for your Reddix account and any activity on it. Keep your password secure. We recommend using a strong, unique password for your Reddix account.</p>
+      </div>
+    </section>
+
+    <section class="agreement-card" style="--i:3;">
+        <div class="agreement-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+        </div>
+        <div class="agreement-content">
+            <h2>3. Content You Submit</h2>
+            <p>You are responsible for content you submit to Reddix. By posting, you grant Reddix a worldwide, royalty-free, perpetual, and sublicensable license to use, copy, modify, and distribute that content.</p>
+        </div>
+    </section>
+
+     <section class="agreement-card" style="--i:4;">
+      <div class="agreement-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+      </div>
+      <div class="agreement-content">
+        <h2>4. Prohibited Actions</h2>
+        <p>You must not violate any law, contract, or third-party right. You are solely responsible for your conduct. Spam, harassment, and illegal content are strictly forbidden.</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
+
