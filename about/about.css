@@ -9,6 +9,21 @@
     --main: #ff4500;
 }
 
+/* .transition-parent {
+    width: 100%;
+} */
+
+.transition {
+    height: 2px;
+    width: 10px;
+    color: black;
+    transition: width 2s;
+}
+
+.transition:hover {
+    width: 100px;
+}
+
 body {
     width: 100%;
     height: 650vh;
