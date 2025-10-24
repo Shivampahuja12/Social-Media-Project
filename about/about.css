@@ -13,12 +13,24 @@
     width: 100%;
 } */
 
+/* underline element (hidden by default) */
 .transition {
+    display: block;           /* ensure it can expand horizontally */
     height: 2px;
-    width: 10px;
-    color: black;
-    transition: width 2s;
+    width: 0%;                /* start hidden */
+    background-color: black;  /* visible color for underline */
+    transition: width 0.28s ease; /* smooth transition */
+    margin-top: 6px;          /* spacing below the link */
 }
+
+/* make parent layout friendly for underline placement */
+.transition-parent {
+    display: inline-flex;
+    flex-direction: column;   /* link above, underline below */
+    align-items: flex-start;  /* left align underline with link */
+    gap: 4px;
+}
+
 
 .transition:hover {
     width: 100px;
@@ -31,13 +43,16 @@ body {
 }
 
 header {
+    position: sticky;
+    top: 0;
+    width: 100%;
     height: 2.5%;
     border-bottom: 1px solid rgb(234, 234, 234);
-    
+    background-color: white;     /* Important */
+    z-index: 999;                /* Keeps navbar above everything */
 }
 
 nav {
-    z-index: 100;
     height: 100%;
     width: 100%;
     display: flex;
@@ -45,11 +60,6 @@ nav {
     align-items: center;
     gap: 10rem;
     font-size: 1.3rem;
-    position: sticky;
-    top: 0;
-    right: 0;
-    left: 0;
-
 }
 
 div.leftnav {
