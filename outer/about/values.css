@@ -70,9 +70,9 @@ div.rightnav a {
     font-weight: 600;
 }
 
-div.rightnav .underline:hover {
+/* div.rightnav .underline:hover {
     text-decoration: underline;
-}
+} */
 
 .navbutton {
     color: white !important;
@@ -590,4 +590,37 @@ td {
     padding: 12px;
     padding-right: 3rem;
 
+}
+
+/* Fix navbar on scroll */
+nav.nav-fixed {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: 0.3s ease-in-out;
+    z-index: 999;
+}
+
+/* Scroll Fade-in Animation */
+section, .cardtop1, .cardtop2, .cardtop3, .cardbottom1, .cardbottom2 {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity .8s ease, transform .8s ease;
+}
+
+.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+.nav-link.active {
+  color: var(--main);
+  font-weight: bold;
+  border-bottom: 2px solid var(--main);
+  padding: 1.2rem 2rem;
+  border-radius: 10px;
+  background-color: #ff44004b;
 }

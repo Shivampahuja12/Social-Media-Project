@@ -70,9 +70,9 @@ div.rightnav a {
     font-weight: 600;
 }
 
-div.rightnav .underline:hover {
+/* div.rightnav .underline:hover {
     text-decoration: underline;
-}
+} */
 
 .navbutton {
     color: white !important;
@@ -239,4 +239,66 @@ td {
     padding: 12px;
     padding-right: 3rem;
 
+}
+
+
+/* Sticky Navbar */
+nav.nav-fixed {
+    /* position: fixed; */
+    top: 0;
+    width: 100%;
+    background: white;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+    z-index: 999;
+}
+
+/* Dropdown Menu */
+.dropdown-options {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: white;
+    padding: 14px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    animation: fadeIn .25s ease;
+}
+
+.dropdown-options a {
+    color: #333;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.dropdown-options a:hover {
+    color: #ff4500;
+}
+
+
+/* Fade-in Animation */
+.box, .section1, .dropdown, footer {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: 0.8s ease;
+}
+
+.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+
+.nav-link.active {
+  color: var(--main);
+  font-weight: bold;
+  border-bottom: 2px solid var(--main);
+  padding: 1.2rem 2rem;
+  border-radius: 10px;
+  background-color: #ff44004b;
 }
