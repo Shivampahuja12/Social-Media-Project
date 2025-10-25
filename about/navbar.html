@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&family=Reddit+Sans:ital,wght@0,200..900;1,200..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="navbar.css">
+</head>
+
+<body>
+    <nav>
+        <div class="leftnav">
+            <img src="footer gpt.png" class="reddix" alt="">
+        </div>
+        <div class="rightnav">
+            <div class="transition-parent">
+                <a href="#" class="">Company</a>
+                <div class="transition"></div>
+            </div>
+            <div class="transition-parent">
+                <a href="values.html" class="">Values</a>
+                <div class="transition"></div>
+
+            </div>
+            <div class="transition-parent">
+                <a href="news.html" class="">News</a>
+                <div class="transition"></div>
+            </div>
+
+            <div>
+                <a href="#" class="navbutton">Visit reddix</a>
+
+            </div>
+        </div>
+    </nav>
+
+    <script>
+        fetch("navbar.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("navbar").innerHTML = data;
+            });
+
+
+            
+    </script>
+</body>
+
+</html>

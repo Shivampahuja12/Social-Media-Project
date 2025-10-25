@@ -11,22 +11,22 @@ window.addEventListener("scroll", () => {
 });
 
 
-// -------------- HOVER UNDERLINE EFFECT --------------
-const transitionParents = document.querySelectorAll(".transition-parent");
+// // -------------- HOVER UNDERLINE EFFECT --------------
+// const transitionParents = document.querySelectorAll(".transition-parent");
 
-transitionParents.forEach(parent => {
-    const underline = parent.querySelector(".transition");
-    parent.addEventListener("mouseenter", () => {
-        underline.style.width = "100%";
-        underline.style.transition = "width 0.3s ease";
-        underline.style.color = "black";
-    });
+// transitionParents.forEach(parent => {
+//     const underline = parent.querySelector(".transition");
+//     parent.addEventListener("mouseenter", () => {
+//         underline.style.width = "100%";
+//         underline.style.transition = "width 0.3s ease";
+//         underline.style.color = "black";
+//     });
 
-    parent.addEventListener("mouseleave", () => {
-        underline.style.width = "0";
-        underline.style.transition = "width 0.3s ease";
-    });
-});
+//     parent.addEventListener("mouseleave", () => {
+//         underline.style.width = "0";
+//         underline.style.transition = "width 0.3s ease";
+//     });
+// });
 
 
 // -------------- NUMBER COUNTER ANIMATION --------------
@@ -74,3 +74,31 @@ document.querySelectorAll(".navbutton").forEach(btn => {
         });
     });
 });
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const text = "The heart of the internet";
+    const speed = 100; // typing speed in ms
+
+    let i = 0;
+    const heading = document.getElementById("typewriter");
+    heading.textContent = ""; // start empty
+
+    function typeEffect() {
+        if (i < text.length) {
+            heading.textContent += text.charAt(i);
+            i++;
+            setTimeout(typeEffect, speed);
+        }
+    }
+
+    typeEffect();
+});
+
+
+  const currentPage = window.location.pathname.split("/").pop();
+  document.querySelectorAll(".nav-link").forEach(link => {
+    if (link.getAttribute("href") === currentPage) {
+      link.classList.add("active");
+    }
+  });

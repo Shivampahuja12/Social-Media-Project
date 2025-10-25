@@ -1,0 +1,60 @@
+
+nav {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10rem;
+    font-size: 1.3rem;
+    font-family: "Reddit Sans", sans-serif;
+}
+
+div.leftnav {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reddix {
+    height: 8rem;
+}
+
+.reddix:hover {
+    cursor: pointer;
+}
+
+div.rightnav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+}
+
+div.rightnav a{
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+}
+
+div.rightnav .underline:hover {
+    text-decoration: underline;
+}
+
+.navbutton {
+    color: white !important; 
+    border: 2px solid var(--main);
+    border-radius: 100px;
+    padding: 19px;
+    background-color: var(--main);
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.navbutton:hover {
+    text-decoration: none;
+    color: var(--main);
+    background-color: white;
+    color: var(--main) !important;
+
+}

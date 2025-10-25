@@ -510,3 +510,21 @@ td {
 
 }
 
+#typewriter {
+    min-height: 200px; /* adjust to roughly the height of the heading */
+    border-right: 3px solid #333;
+    padding-right: 5px;
+    white-space: wrap;
+    overflow: hidden;
+    animation: blink 0.6s infinite;
+}
+
+
+.nav-link.active {
+  color: var(--main);
+  font-weight: bold;
+  border-bottom: 2px solid var(--main);
+  padding: 1.2rem 2rem;
+  border-radius: 10px;
+  background-color: #ff44004b;
+}
