@@ -1,4 +1,4 @@
-// -------------- NAVBAR SHADOW ON SCROLL --------------
+//  NAVBAR SHADOW ON SCROLL 
 const nav = document.querySelector("nav");
 window.addEventListener("scroll", () => {
     if (window.scrollY > 10) {
@@ -11,7 +11,7 @@ window.addEventListener("scroll", () => {
 });
 
 
-// // -------------- HOVER UNDERLINE EFFECT --------------
+//  HOVER UNDERLINE EFFECT 
 // const transitionParents = document.querySelectorAll(".transition-parent");
 
 // transitionParents.forEach(parent => {
@@ -29,7 +29,7 @@ window.addEventListener("scroll", () => {
 // });
 
 
-// -------------- NUMBER COUNTER ANIMATION --------------
+//  NUMBER COUNTER ANIMATION 
 function animateCounter(element, target) {
     let current = 0;
     const speed = 100; // lower = faster
@@ -64,7 +64,7 @@ window.addEventListener("scroll", () => {
 });
 
 
-// -------------- SMOOTH SCROLL FOR "Visit reddix" BUTTONS --------------
+// SMOOTH SCROLL FOR "Visit reddix" BUTTONS 
 document.querySelectorAll(".navbutton").forEach(btn => {
     btn.addEventListener("click", (e) => {
         e.preventDefault();
@@ -96,9 +96,9 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-  const currentPage = window.location.pathname.split("/").pop();
-  document.querySelectorAll(".nav-link").forEach(link => {
+const currentPage = window.location.pathname.split("/").pop();
+document.querySelectorAll(".nav-link").forEach(link => {
     if (link.getAttribute("href") === currentPage) {
-      link.classList.add("active");
+        link.classList.add("active");
     }
-  });
+});
