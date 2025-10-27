@@ -9,10 +9,6 @@
     --main: #ff4500;
 }
 
-/* .transition-parent {
-    width: 100%;
-} */
-
 /* underline element (hidden by default) */
 .transition {
     display: block;           /* ensure it can expand horizontally */
@@ -20,15 +16,16 @@
     width: 0%;                /* start hidden */
     background-color: black;  /* visible color for underline */
     transition: width 0.28s ease; /* smooth transition */
-    margin-top: 6px;          /* spacing below the link */
+    /* margin-top: 6px;          spacing below the link */
 }
 
 /* make parent layout friendly for underline placement */
 .transition-parent {
-    display: inline-flex;
+    /* display: inline-flex; */
     flex-direction: column;   /* link above, underline below */
-    align-items: flex-start;  /* left align underline with link */
-    gap: 4px;
+    align-items: center;  /* left align underline with link */
+    justify-content: center;
+    /* gap: 4px; */
 }
 
 
@@ -524,7 +521,7 @@ td {
   color: var(--main);
   font-weight: bold;
   border-bottom: 2px solid var(--main);
-  padding: 1.2rem 2rem;
+  padding: 1rem 1rem;
   border-radius: 10px;
   background-color: #ff44004b;
 }
