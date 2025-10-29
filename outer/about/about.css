@@ -525,3 +525,529 @@ td {
   border-radius: 10px;
   background-color: #ff44004b;
 }
+
+/* Add these media queries at the end of your about.css file */
+
+/* Tablet View (768px - 1024px) */
+@media (max-width: 1024px) {
+    nav {
+        gap: 2rem;
+        font-size: 1.1rem;
+        padding: 0 2rem;
+    }
+
+    .reddix {
+        height: 6rem;
+    }
+
+    div.rightnav {
+        gap: 1.5rem;
+    }
+
+    .navbutton {
+        padding: 15px;
+        font-size: 0.9rem;
+    }
+
+    /* Section 1 */
+    div.leftsection1 {
+        padding: 5rem;
+    }
+
+    div.leftsection1 h1 {
+        font-size: 3rem;
+    }
+
+    img.robo {
+        width: 18rem;
+    }
+
+    /* Section 2 */
+    .section2 .subsection1 {
+        margin-left: 3rem;
+        margin-right: 3rem;
+    }
+
+    .rightofss1 {
+        padding: 5rem 5rem 5rem 2rem;
+    }
+
+    .rightofss1 h1 {
+        font-size: 2.2rem;
+    }
+
+    .leftofss2 {
+        padding: 5rem 2rem 5rem 8rem;
+    }
+
+    .rightofss2 {
+        padding-right: 5rem;
+    }
+
+    .leftofss3 {
+        padding-left: 4rem;
+    }
+
+    .rightofss3 {
+        padding: 5rem 5rem 5rem 2rem;
+    }
+
+    .leftofss4 {
+        padding: 5rem 2rem 8rem 8rem;
+    }
+
+    /* Section 3 */
+    .section3 {
+        padding: 10rem 5rem;
+    }
+
+    .boxes {
+        flex-wrap: wrap;
+    }
+
+    .box {
+        flex: 1 1 45%;
+    }
+
+    /* Section 4 */
+    .section4 h1 {
+        margin-left: 5rem;
+    }
+
+    .section4div1,
+    .section4div2 {
+        gap: 3rem;
+        padding: 0 3rem;
+    }
+
+    /* Footer */
+    table {
+        font-size: 0.9rem;
+    }
+
+    thead {
+        font-size: 1.2rem;
+    }
+
+    tbody {
+        font-size: 1rem;
+    }
+
+    td {
+        padding: 8px;
+        padding-right: 2rem;
+    }
+}
+
+/* Mobile View (max-width: 768px) */
+@media (max-width: 768px) {
+    body {
+        height: auto;
+    }
+
+    header {
+        height: auto;
+        position: relative;
+    }
+
+    nav {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+        font-size: 1rem;
+    }
+
+    .reddix {
+        height: 5rem;
+    }
+
+    div.rightnav {
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+    }
+
+    .navbutton {
+        padding: 12px 20px;
+    }
+
+    /* Section 1 */
+    .section1 {
+        flex-direction: column;
+        height: auto;
+        padding: 2rem 0;
+    }
+
+    div.leftsection1,
+    div.rightsection1 {
+        width: 100%;
+        height: auto;
+    }
+
+    div.leftsection1 {
+        padding: 3rem 2rem;
+        text-align: center;
+    }
+
+    div.leftsection1 h1 {
+        font-size: 2.5rem;
+    }
+
+    div.leftsection1 p {
+        font-size: 1.1rem;
+    }
+
+    img.robo {
+        width: 15rem;
+    }
+
+    /* Section 2 */
+    .section2 {
+        height: auto;
+    }
+
+    .section2 .subsection1 {
+        flex-direction: column;
+        margin: 2rem 1rem;
+        height: auto;
+    }
+
+    .section2 .subsection1 .leftofss1,
+    .rightofss1 {
+        width: 100%;
+        height: auto;
+    }
+
+    .section2 .subsection1 .leftofss1 img {
+        height: auto;
+        width: 80%;
+        max-width: 300px;
+    }
+
+    .rightofss1 {
+        padding: 2rem;
+        gap: 1.5rem;
+        text-align: center;
+    }
+
+    .rightofss1 h1 {
+        font-size: 2rem;
+    }
+
+    .rightofss1 p {
+        padding-right: 0;
+    }
+
+    /* Subsection 2 */
+    .subsection2 {
+        flex-direction: column-reverse;
+        height: auto;
+        margin: 0;
+        padding: 2rem 0;
+    }
+
+    .leftofss2,
+    .rightofss2 {
+        width: 100%;
+        height: auto;
+    }
+
+    .leftofss2 {
+        padding: 2rem;
+        text-align: center;
+    }
+
+    .leftofss2 h2 {
+        font-size: 2rem;
+    }
+
+    .rightofss2 {
+        padding: 2rem;
+    }
+
+    .rightofss2 img {
+        height: auto;
+        width: 100%;
+        max-width: 300px;
+    }
+
+    /* Subsection 3 */
+    .subsection3 {
+        flex-direction: column;
+        height: auto;
+        padding: 2rem 0;
+    }
+
+    .leftofss3,
+    .rightofss3 {
+        width: 100%;
+        height: auto;
+    }
+
+    .leftofss3 {
+        padding: 2rem;
+    }
+
+    .leftofss3 img {
+        height: auto;
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .rightofss3 {
+        padding: 2rem;
+        text-align: center;
+    }
+
+    .rightofss3 h2 {
+        font-size: 2rem;
+    }
+
+    /* Subsection 4 */
+    .subsection4 {
+        flex-direction: column-reverse;
+        height: auto;
+        padding: 2rem 0;
+    }
+
+    .leftofss4,
+    .rightofss4 {
+        width: 100%;
+        height: auto;
+    }
+
+    .leftofss4 {
+        padding: 2rem;
+        text-align: center;
+    }
+
+    .leftofss4 h2 {
+        font-size: 2rem;
+    }
+
+    .rightofss4 {
+        padding: 2rem;
+    }
+
+    .rightofss4 img {
+        height: auto;
+        width: 100%;
+        max-width: 300px;
+    }
+
+    /* Section 3 */
+    .section3 {
+        height: auto;
+        padding: 4rem 2rem;
+        gap: 2rem;
+    }
+
+    .section3 h2 {
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    .section3para {
+        font-size: 1.1rem;
+        text-align: center;
+    }
+
+    .boxes {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .box {
+        width: 100%;
+    }
+
+    .reddixpress {
+        text-align: center;
+        display: block;
+        margin: 2rem auto 0;
+        width: fit-content;
+    }
+
+    /* Section 4 */
+    .section4 {
+        height: auto;
+        padding-bottom: 3rem;
+    }
+
+    .section4 h1 {
+        margin-left: 2rem;
+        font-size: 2rem;
+        padding-top: 2rem;
+    }
+
+    .section4div1,
+    .section4div2 {
+        flex-direction: column;
+        height: auto;
+        margin: 2rem 1rem;
+        gap: 3rem;
+    }
+
+    .twoboxestop,
+    .twoboxesbottom {
+        width: 100%;
+        height: auto;
+    }
+
+    figcaption {
+        font-size: 1.1rem;
+        margin-top: 1rem;
+    }
+
+    /* Footer */
+    footer {
+        height: auto;
+        flex-direction: column;
+        padding: 2rem 0;
+    }
+
+    .leftfooter,
+    .rightfooter {
+        width: 100%;
+        height: auto;
+    }
+
+    .leftfooter {
+        padding: 2rem 0;
+    }
+
+    .footerimage {
+        height: auto;
+        width: 150px;
+    }
+
+    .rightfooter {
+        overflow-x: auto;
+    }
+
+    table {
+        width: 100%;
+        font-size: 0.8rem;
+    }
+
+    thead {
+        font-size: 1rem;
+    }
+
+    tbody {
+        font-size: 0.9rem;
+    }
+
+    td {
+        padding: 8px;
+        padding-right: 1rem;
+    }
+}
+
+/* Small Mobile View (max-width: 480px) */
+@media (max-width: 480px) {
+    nav {
+        font-size: 0.9rem;
+    }
+
+    .reddix {
+        height: 4rem;
+    }
+
+    .navbutton {
+        padding: 10px 15px;
+        font-size: 0.85rem;
+    }
+
+    div.leftsection1 h1 {
+        font-size: 2rem;
+    }
+
+    div.leftsection1 p {
+        font-size: 1rem;
+    }
+
+    img.robo {
+        width: 12rem;
+    }
+
+    .rightofss1 h1,
+    .leftofss2 h2,
+    .rightofss3 h2,
+    .leftofss4 h2 {
+        font-size: 1.5rem;
+    }
+
+    .rightofss1 p,
+    .leftofss2 p,
+    .rightofss3 p,
+    .leftofss4 p {
+        font-size: 1rem;
+    }
+
+    .section3 {
+        padding: 3rem 1rem;
+    }
+
+    .section3 h2 {
+        font-size: 1.5rem;
+    }
+
+    .section3para {
+        font-size: 1rem;
+    }
+
+    .box h2 {
+        font-size: 1.8rem;
+    }
+
+    .box p {
+        font-size: 1rem;
+    }
+
+    .section4 h1 {
+        margin-left: 1rem;
+        font-size: 1.5rem;
+    }
+
+    figcaption {
+        font-size: 1rem;
+    }
+
+    table {
+        font-size: 0.7rem;
+    }
+
+    thead {
+        font-size: 0.9rem;
+    }
+
+    tbody {
+        font-size: 0.8rem;
+    }
+
+    td {
+        padding: 6px;
+        padding-right: 0.5rem;
+    }
+}
+
+/* Landscape mode adjustments */
+@media (max-width: 768px) and (orientation: landscape) {
+    .section1 {
+        flex-direction: row;
+    }
+
+    div.leftsection1,
+    div.rightsection1 {
+        width: 50%;
+    }
+
+    div.leftsection1 {
+        padding: 2rem;
+    }
+
+    div.leftsection1 h1 {
+        font-size: 2rem;
+    }
+}
