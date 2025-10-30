@@ -4,6 +4,8 @@
   box-sizing: border-box;
 }
 
+
+
 ul {
   list-style-type: none;
 }
@@ -64,6 +66,13 @@ nav {
   display: flex;
   align-items: center;
   min-width: 180px;
+}
+
+.nightMode{
+  padding-top: 0.4rem;
+  padding-right: 0.8rem;
+  cursor: pointer;
+  color: orange;
 }
 
 .logo_img {
@@ -705,4 +714,257 @@ nav {
 
 .hidden{
   display: none;
+}
+
+/* Light Mode Variables */
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f6f7f8;
+  --bg-tertiary: #e6e6e6;
+  --text-primary: #1a1a1b; /* Darker text for better readability */
+  --text-secondary: #4f4f4f; /* Medium dark for secondary text */
+  --text-tertiary: #6c6c6c; /* Slightly lighter but still readable */
+  --accent-primary: #ff5700;
+  --accent-secondary: #1484d6;
+  --border-color: #cccccc;
+  --hover-bg: #f0f0f0;
+  --shadow: rgba(0, 0, 0, 0.1);
+}
+
+/* Light Mode Styles */
+.light-mode {
+  background-color: var(--bg-primary) !important;
+  color: var(--text-primary);
+}
+
+.light-mode body {
+  background-color: var(--bg-primary) !important;
+  color: var(--text-primary);
+}
+
+/* Make ALL background areas white */
+.light-mode main {
+  background-color: var(--bg-primary) !important;
+}
+
+.light-mode .partiotion2 {
+  background-color: var(--bg-primary) !important;
+}
+
+.light-mode .partion-2 {
+  background-color: var(--bg-primary) !important;
+  background: var(--bg-primary) !important; /* Remove gradient */
+}
+
+.light-mode .main-conatiner {
+  background-color: var(--bg-primary);
+}
+
+/* Navigation */
+.light-mode nav {
+  background-color: var(--bg-primary);
+  border-bottom-color: var(--border-color);
+  box-shadow: 0 2px 10px var(--shadow);
+}
+
+.light-mode .fixedNav {
+  background-color: var(--bg-primary);
+}
+
+.light-mode .searchBox {
+  background-color: var(--bg-secondary);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+.light-mode .searchBox:focus {
+  background-color: var(--bg-primary);
+  border-color: var(--text-secondary);
+}
+
+.light-mode .searchBox::placeholder {
+  color: var(--text-tertiary);
+}
+
+/* Text Colors - Make them darker */
+.light-mode .DashboardMAin {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.light-mode .DashboardMAin:hover {
+  background-color: var(--hover-bg);
+}
+
+.light-mode .chaticon,
+.light-mode .bellIcon {
+  filter: invert(0.5); /* Darker icons */
+}
+
+.light-mode .chaticon:hover,
+.light-mode .bellIcon:hover {
+  background-color: var(--hover-bg);
+  filter: invert(0.3); /* Even darker on hover */
+}
+
+/* Sidebar */
+.light-mode .partion-1 {
+  background-color: var(--bg-primary);
+  border-right-color: var(--border-color);
+}
+
+.light-mode .box:hover {
+  background-color: var(--hover-bg);
+}
+
+.light-mode .side-barImages {
+  filter: invert(0.4); /* Darker sidebar icons */
+}
+
+.light-mode .box p,
+.light-mode .box a {
+  color: var(--text-primary) !important; /* Force dark text */
+  font-weight: 500;
+}
+
+.light-mode .box:hover p,
+.light-mode .box:hover a {
+  color: var(--accent-primary) !important;
+}
+
+/* Posts */
+.light-mode .post-container {
+  background-color: var(--bg-primary);
+  border-color: var(--border-color);
+}
+
+.light-mode .post-container:hover {
+  border-color: var(--text-tertiary);
+  box-shadow: 0 4px 12px var(--shadow);
+}
+
+.light-mode .left-side-div > h5 {
+  color: var(--text-primary) !important;
+  font-weight: 600;
+}
+
+.light-mode .left-side-div > p {
+  color: var(--text-secondary) !important;
+}
+
+.light-mode #dot {
+  color: var(--text-tertiary);
+}
+
+.light-mode .desc-div > p {
+  color: var(--text-primary) !important;
+  font-weight: 600;
+}
+
+.light-mode .cursor {
+  filter: invert(0.4); /* Darker action icons */
+}
+
+.light-mode .cursor:hover {
+  filter: invert(0.2);
+  background-color: var(--hover-bg);
+}
+
+.light-mode .space > hr {
+  background-color: var(--border-color);
+}
+
+/* Headings and Brand Colors */
+.light-mode .logon_name,
+.light-mode .heading-games > h2,
+.light-mode .heading-resor {
+  color: var(--accent-primary);
+}
+
+.light-mode .create {
+  background: linear-gradient(to right, #ff5700, #ff4500);
+}
+
+.light-mode .join {
+  background-color: var(--accent-secondary);
+  color: white;
+}
+
+/* Remove any dark gradients from dark theme */
+.light-mode .partion-2 {
+  background: var(--bg-primary) !important;
+}
+
+/* Scrollbar for light mode */
+.light-mode .partion-1::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+.light-mode .partion-1::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+}
+
+.light-mode .partion-1::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+
+/* Ensure all links in light mode are dark */
+.light-mode a {
+  color: var(--text-primary) !important;
+}
+
+.light-mode a:hover {
+  color: var(--accent-primary) !important;
+}
+
+/* Hide menu button by default */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: var(--text-color, white);
+  cursor: pointer;
+}
+
+/* Hidden mobile menu container */
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  background-color: var(--bg-color, #1e1e1e);
+  position: absolute;
+  top: 60px; /* adjust according to your navbar height */
+  left: 0;
+  width: 200px;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  z-index: 999;
+}
+
+.mobile-menu a {
+  color: white;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+.mobile-menu a:hover {
+  background-color: rgba(255,255,255,0.1);
+}
+
+/* Show hamburger on small screens and hide sidebar */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .left-sidebar {
+    display: none;
+  }
+
+  .mobile-menu.show {
+    display: flex;
+  }
 }

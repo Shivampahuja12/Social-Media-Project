@@ -3,6 +3,9 @@
 
 const joinBtns = document.querySelectorAll(".join");
 
+
+
+// join -> joined
 for(let i = 0 ; i < joinBtns.length ; i++){
     joinBtns[i].addEventListener("click" , function(){
         console.log(joinBtns[i])
@@ -17,14 +20,47 @@ for(let i = 0 ; i < joinBtns.length ; i++){
 }
 
 
-const likeBtns = document.querySelector(".likeBtns");
+// mode switch hoo raha hai yaha pe 
+const modeSwitch = document.querySelector(".nightMode");
 
-likeBtns.addEventListener("click" , function(){
+document.addEventListener('DOMContentLoaded', function() {
+  const nightModeToggle = document.querySelector('.nightMode');
+  
+  const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+  const currentTheme = localStorage.getItem('theme');
 
-    console.log(likeBtns.src)
+  if (currentTheme === 'light' || (!currentTheme && !prefersDarkScheme.matches)) {
+    enableLightMode();
+  } else {
+    document.body.classList.remove('light-mode');
+  }
+  
+  nightModeToggle.addEventListener('click', function() {
+    if (document.body.classList.contains('light-mode')) {
+      disableLightMode();
+    } else {
+      enableLightMode();
+    }
+  });
+  
+  function enableLightMode() {
+    document.body.classList.add('light-mode');
 
-    likeBtns.src = "Social-Media-Project/FEwMoreImages/heart.png";
+    nightModeToggle.src = `sun.png`;
+    nightModeToggle.style.filter = 'invert(0.4)';
+    localStorage.setItem('theme', 'light');
+  }
+  
+  function disableLightMode() {
+    document.body.classList.remove('light-mode');
+    nightModeToggle.src = `moon.png`;
+    nightModeToggle.style.filter = 'invert(0.8)'; 
+    localStorage.setItem('theme', 'dark');
+  }
+});
 
-    console.log(likeBtns.src)
 
-})
+
+
+
+

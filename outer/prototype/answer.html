@@ -8,7 +8,347 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="answer.css">
+  <style>
+    :root {
+      --primary-color: #ff4500;
+      --primary-hover: #e03d00;
+      --bg-color: #f8f9fa;
+      --card-bg: #ffffff;
+      --text-primary: #1c1c1c;
+      --text-secondary: #787c7e;
+      --border-color: #e5e5e5;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      --radius: 12px;
+      --transition: all 0.2s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-primary);
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+      width: 100%;
+      flex: 1;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .title {
+      font-size: 2.5rem;
+      font-weight: 900;
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+
+    .brand {
+      color: var(--primary-color);
+    }
+
+    .subtitle {
+      font-size: 1.125rem;
+      color: var(--text-secondary);
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    .chip {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1rem;
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 2rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    .chip:hover {
+      background-color: #f5f5f5;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .learn {
+      text-align: center;
+      color: var(--primary-color);
+      font-weight: 500;
+      margin-bottom: 2rem;
+      cursor: pointer;
+    }
+
+    .search-wrap {
+      position: relative;
+      margin-bottom: 2rem;
+    }
+
+    .search {
+      display: flex;
+      background-color: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: var(--transition);
+    }
+
+    .search:focus-within {
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .search input {
+      flex: 1;
+      padding: 1.25rem 1.5rem;
+      border: none;
+      outline: none;
+      font-size: 1rem;
+      background: transparent;
+    }
+
+    .search input::placeholder {
+      color: var(--text-secondary);
+    }
+
+    .go {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 1.5rem;
+      background-color: var(--primary-color);
+      border: none;
+      color: white;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .go:hover {
+      background-color: var(--primary-hover);
+    }
+
+    .go svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .glow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+      opacity: 0.5;
+      filter: blur(8px);
+      z-index: -1;
+    }
+
+    /* AI Response Section */
+    .ai-response {
+      background-color: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      margin-top: 2rem;
+      display: none;
+    }
+
+    .ai-response.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .ai-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .ai-avatar {
+      width: 40px;
+      height: 40px;
+      background-color: var(--primary-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+    }
+
+    .ai-name {
+      font-weight: 700;
+      font-size: 1.125rem;
+    }
+
+    .ai-text {
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .ai-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+    }
+
+    .ai-actions {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .ai-action {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .ai-action:hover {
+      color: var(--primary-color);
+    }
+
+    /* Loading animation */
+    .loading {
+      display: none;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .loading.active {
+      display: block;
+    }
+
+    .loading-dots {
+      display: inline-flex;
+      gap: 4px;
+    }
+
+    .loading-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--primary-color);
+      animation: pulse 1.5s infinite ease-in-out;
+    }
+
+    .loading-dot:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .loading-dot:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0%, 80%, 100% { transform: scale(0.8); opacity: 0.5; }
+      40% { transform: scale(1); opacity: 1; }
+    }
+
+    /* Responsive styles */
+    @media (max-width: 768px) {
+      .title {
+        font-size: 2rem;
+      }
+      
+      .subtitle {
+        font-size: 1rem;
+      }
+      
+      .chips {
+        gap: 0.5rem;
+      }
+      
+      .chip {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.8rem;
+      }
+      
+      .search input {
+        padding: 1rem 1.25rem;
+      }
+      
+      .go {
+        padding: 0 1.25rem;
+      }
+      
+      .ai-response {
+        padding: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .wrap {
+        padding: 1.5rem 1rem;
+      }
+      
+      .title {
+        font-size: 1.75rem;
+      }
+      
+      .chip {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.75rem;
+      }
+      
+      .ai-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+      
+      .ai-footer {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+      }
+      
+      .ai-actions {
+        width: 100%;
+        justify-content: space-between;
+      }
+    }
+  </style>
 </head>
 <body>
   <main class="wrap">
@@ -40,8 +380,8 @@
 
       <div class="search-wrap">
         <div class="search" role="search">
-          <input type="text" placeholder="Ask a question" aria-label="Ask a question" />
-          <button class="go" aria-label="Submit question">
+          <input type="text" placeholder="Ask a question" aria-label="Ask a question" id="question-input" />
+          <button class="go" aria-label="Submit question" id="submit-btn">
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <path d="M5 12h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
               <path d="M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -50,7 +390,175 @@
         </div>
       </div>
       <div class="glow" aria-hidden="true"></div>
+      
+      <!-- Loading indicator -->
+      <div class="loading" id="loading-indicator">
+        <div class="loading-dots">
+          <div class="loading-dot"></div>
+          <div class="loading-dot"></div>
+          <div class="loading-dot"></div>
+        </div>
+      </div>
+      
+      <!-- AI Response Section -->
+      <div class="ai-response" id="ai-response">
+        <div class="ai-header">
+          <div class="ai-avatar">AI</div>
+          <div class="ai-name">Reddit Answers AI</div>
+        </div>
+        <div class="ai-text" id="ai-text">
+          <!-- AI response will be inserted here -->
+        </div>
+        <div class="ai-footer">
+          <div>Based on Reddit community insights</div>
+          <div class="ai-actions">
+            <div class="ai-action" id="copy-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="9" y="9" width="13" height="13" rx="2" stroke="currentColor" stroke-width="2"/>
+                <path d="M5 15H4C2.89543 15 2 14.1046 2 13V4C2 2.89543 2.89543 2 4 2H13C14.1046 2 15 2.89543 15 4V5" stroke="currentColor" stroke-width="2"/>
+              </svg>
+              <span>Copy</span>
+            </div>
+            <div class="ai-action" id="share-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="18" cy="5" r="3" stroke="currentColor" stroke-width="2"/>
+                <circle cx="6" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                <circle cx="18" cy="19" r="3" stroke="currentColor" stroke-width="2"/>
+                <path d="M8.59 13.51L15.42 17.49" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M15.41 6.51L8.59 10.49" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              <span>Share</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const questionInput = document.getElementById('question-input');
+      const submitBtn = document.getElementById('submit-btn');
+      const chips = document.querySelectorAll('.chip');
+      const loadingIndicator = document.getElementById('loading-indicator');
+      const aiResponse = document.getElementById('ai-response');
+      const aiText = document.getElementById('ai-text');
+      const copyBtn = document.getElementById('copy-btn');
+      const shareBtn = document.getElementById('share-btn');
+      
+      // Sample AI responses for demonstration
+      const sampleResponses = {
+        'flight': "Based on Reddit discussions, the best time to book flights is typically 1-3 months in advance for domestic and 2-8 months for international. Many users recommend using tools like Google Flights, Skyscanner, or Hopper to track prices. Tuesdays and Wednesdays are often cited as the cheapest days to fly. Consider flying on holidays for potentially lower prices when demand is lower.",
+        'water': "Reddit's DIY community suggests several methods to improve water pressure: 1) Check for clogged aerators on faucets - simply unscrew and clean. 2) Inspect the main shut-off valve to ensure it's fully open. 3) For showerheads, consider a pressure-boosting model. 4) If you have older galvanized pipes, mineral buildup might be reducing flow - a plumber may need to assess. Many users report success with inexpensive water pressure booster pumps.",
+        'invest': "The Reddit personal finance community generally recommends the 50/30/20 rule: 50% for needs, 30% for wants, and 20% for savings/investments. For investment allocation, a common suggestion is '100 minus your age' as the percentage to put in stocks vs. bonds. Emergency funds of 3-6 months expenses should be prioritized before aggressive investing. Index funds are frequently recommended for beginners due to diversification and low fees.",
+        'earbuds': "Based on Reddit discussions, popular wireless earbuds include: AirPods Pro for iOS users, Sony WF-1000XM4 for best noise cancellation, Jabra Elite series for all-around performance, and Galaxy Buds for Android compatibility. For budget options, many recommend Anker Soundcore models. Key factors mentioned are battery life (5+ hours), comfort for extended wear, and reliable connectivity.",
+        'default': "Based on Reddit community insights, here's what I found: The consensus suggests researching multiple sources before making decisions. Many users emphasize the importance of considering personal circumstances rather than one-size-fits-all solutions. For more specific information, you might want to search relevant subreddits or refine your question with more details about your particular situation."
+      };
+      
+      // Function to get AI response based on question
+      function getAIResponse(question) {
+        question = question.toLowerCase();
+        
+        if (question.includes('flight') || question.includes('travel')) {
+          return sampleResponses.flight;
+        } else if (question.includes('water') || question.includes('pressure')) {
+          return sampleResponses.water;
+        } else if (question.includes('invest') || question.includes('savings')) {
+          return sampleResponses.invest;
+        } else if (question.includes('earbud') || question.includes('headphone')) {
+          return sampleResponses.earbuds;
+        } else {
+          return sampleResponses.default;
+        }
+      }
+      
+      // Function to simulate AI typing effect
+      function typeResponse(text, element, callback) {
+        element.innerHTML = '';
+        let i = 0;
+        const speed = 20; // typing speed in ms
+        
+        function type() {
+          if (i < text.length) {
+            element.innerHTML += text.charAt(i);
+            i++;
+            setTimeout(type, speed);
+          } else if (callback) {
+            callback();
+          }
+        }
+        
+        type();
+      }
+      
+      // Function to show AI response
+      function showResponse(question) {
+        loadingIndicator.classList.add('active');
+        aiResponse.classList.remove('active');
+        
+        // Simulate API delay
+        setTimeout(() => {
+          loadingIndicator.classList.remove('active');
+          const response = getAIResponse(question);
+          typeResponse(response, aiText, () => {
+            aiResponse.classList.add('active');
+          });
+        }, 1500);
+      }
+      
+      // Event listeners
+      submitBtn.addEventListener('click', function() {
+        const question = questionInput.value.trim();
+        if (question) {
+          showResponse(question);
+        }
+      });
+      
+      questionInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          const question = questionInput.value.trim();
+          if (question) {
+            showResponse(question);
+          }
+        }
+      });
+      
+      chips.forEach(chip => {
+        chip.addEventListener('click', function() {
+          const question = this.textContent.trim();
+          questionInput.value = question;
+          showResponse(question);
+        });
+      });
+      
+      copyBtn.addEventListener('click', function() {
+        const textToCopy = aiText.textContent;
+        navigator.clipboard.writeText(textToCopy).then(() => {
+          const originalText = copyBtn.querySelector('span').textContent;
+          copyBtn.querySelector('span').textContent = 'Copied!';
+          setTimeout(() => {
+            copyBtn.querySelector('span').textContent = originalText;
+          }, 2000);
+        });
+      });
+      
+      shareBtn.addEventListener('click', function() {
+        if (navigator.share) {
+          navigator.share({
+            title: 'Reddit Answer',
+            text: aiText.textContent,
+            url: window.location.href
+          });
+        } else {
+          // Fallback for browsers that don't support Web Share API
+          const originalText = shareBtn.querySelector('span').textContent;
+          shareBtn.querySelector('span').textContent = 'Link copied!';
+          setTimeout(() => {
+            shareBtn.querySelector('span').textContent = originalText;
+          }, 2000);
+        }
+      });
+    });
+  </script>
 </body>
 </html>

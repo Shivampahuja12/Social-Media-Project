@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ReddiX - Reddit Clone</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/Social-Media-Project/outer/StyleCssMainPage/Styles2.css">
+  </head>
+  <body>
+    <nav>
+      <div class="fixedNav">
+        <div class="first_side flex-class">
+          <img src="/Social-Media-Project/outer/NAvImages/images.jpg" alt="ReddiX Logo" class="logo_img" />
+          <h3 class="logon_name">ReddiX</h3>
+        </div>
+
+        <div class="second-side flex-class">
+          <div class="seacrh-iv">
+            <img
+              src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2Q3ZGFkYyI+PHBhdGggZD0iTTE1LjUgMTRoLS43OWwtLjI4LS4yN0MxNS40MSAxMi41OSAxNiAxMS4xMSAxNiA5LjUgMTYgNS45MSAxMy4wOSAzIDkuNSAzUzMgNS45MSAzIDkuNSA1LjkxIDE2IDkuNSAxNmMxLjYxIDAgMy4wOS0uNTkgNC4yMy0xLjU3bC4yNy4yOHYuNzlsNSA0Ljk5TDIwLjQ5IDE5bC00Ljk5LTV6bS02IDBDNy4wMSAxNCA1IDExLjk5IDUgOS41UzcuMDEgNSA5LjUgNSAxNCA3LjAxIDE0IDkuNSAxMS45OSAxNCA5LjUgMTR6Ii8+PC9zdmc+"
+              alt="Search"
+              class="seacrh_icon"
+            />
+            <input
+              type="text"
+              placeholder="Search ReddiX"
+              class="searchBox"
+              id="searchInput"
+            />
+            <button class="clear-search hidden" id="clearSearch">×</button>
+          </div>
+        </div>
+
+        <div class="third_side">
+          <ul class="list-items">
+            <li class="DashboardMAin">Dashboard</li>
+            <!-- <li>
+              <img
+                src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2Q3ZGFkYyI+PHBhdGggZD0iTTIwIDJINGMtMS4xIDAtMiAuOS0yIDJ2MTJjMCAxLjEuOSAyIDIgMmg0bDQgNGw0LTRoNGMxLjEgMCAyLS45IDItMlY0YzAtMS4xLS45LTItMi0yem0tMiAxNGgtNGwtNCA0di00SDZWNmgxMnYxMHoiLz48L3N2Zz4="
+                alt="Chat"
+                class="chaticon"
+              />
+            </li> -->
+
+            <li>
+              <div class="create" id="createPostBtn">
+                <p>Create</p>
+                <img
+                  src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0id2hpdGUiPjxwYXRoIGQ9Ik0xOSAxM2gtNlY3aC0ydjZINXYyaDZ2Nmgydi02aDZ6Ii8+PC9zdmc+"
+                  alt="Plus"
+                />
+              </div>
+            </li>
+            <!-- <li class="notification-container">
+              <div class="notification-icon">
+                <img src="inbox.svg" alt="Notifications" class="bellIcon" />
+                <span class="notification-badge hidden" id="notificationBadge"
+                  >0</span
+                >
+              </div>
+              <div
+                class="notification-dropdown hidden"
+                id="notificationDropdown"
+              >
+                <div class="notification-header">
+                  <h3>Notifications</h3>
+                  <button class="clear-all" id="clearAllNotifications">
+                    Clear all
+                  </button>
+                </div>
+                <div class="notification-list" id="notificationList">
+                  <!-- Notifications will appear here -->
+                <!-- </div>
+              </div> -->
+            <!-- </li> --> 
+
+            <li><img src="sun.png" alt="night" class="nightMode cursor" /></li>
+
+            <li>
+              <div class="profile-logo">
+                <a href="signup/signup1.html"
+                  ><img src="mainIImages/vk.jpg" alt="" loading="lazy"
+                /></a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <div class="partiotion2">
+        <div class="partion-1">
+          <div class="first-box">
+            <div class="box">
+              <img src="mainIImages/home.png" alt="" class="side-barImages" />
+              <a href="deeppseeek.html"><p>Home</p></a>
+            </div>
+
+            <div class="box">
+              <img
+                src="mainIImages/answers.png"
+                alt=""
+                class="side-barImages"
+              />
+              <a href="/Social-Media-Project/outer/prototype/answer.html"><p>Answers</p></a>
+            </div>
+
+            <div class="box">
+              <img
+                src="mainIImages/explore.png"
+                alt=""
+                class="side-barImages"
+              />
+              <a href="/Social-Media-Project/outer/communites1/index.html"><p>Explore</p></a>
+            </div>
+
+            <div class="box">
+              <img src="mainIImages/all.png" alt="" class="side-barImages" />
+              <a href="deeppseeek.html"><p>ALL</p></a>
+            </div>
+          </div>
+
+          <div class="line">
+            <hr />
+          </div>
+
+          <div class="second-box">
+            <div class="heading-games">
+              <h2>Games On ReediX</h2>
+              <img src="mainIImages/logoimage.jpg" alt="" class="logoImage" />
+            </div>
+            <div class="games-items">
+              <div class="box">
+                <img
+                  src="mainIImages/number.png"
+                  alt=""
+                  class="side-barImages"
+                />
+                <a href="/Social-Media-Project/outer/DOM PROJECT/project-1/index.html">Guess The Number</a>
+              </div>
+
+              <div class="box">
+                <img src="mainIImages/car.png" alt="" class="side-barImages" />
+                <a href="/Social-Media-Project/outer/DOM PROJECT/carGame/index.html">CAR</a>
+              </div>
+
+              <div class="box">
+                <img src="mainIImages/dice.png" alt="" class="side-barImages" />
+                <a href="/Social-Media-Project/outer/DOM PROJECT/Dice/index.html">Dice</a>
+              </div>
+
+              <div class="box">
+                <img src="mainIImages/rock.png" alt="" class="side-barImages" />
+                <a href="/Social-Media-Project/outer/DOM PROJECT/rockPapperScissorGame/indeex.html"
+                  >ROCK PAPER</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="line">
+            <hr />
+          </div>
+
+          <div class="third-box">
+            <div class="heading-games">
+              <h2>COMMUNITIES</h2>
+            </div>
+
+            <div class="box">
+              <img src="mainIImages/pika.jpg" alt="" class="comunityimage" />
+              <p>r/Pikachu</p>
+            </div>
+
+            <div class="box">
+              <img src="mainIImages/meme.jpg" alt="" class="comunityimage" />
+              <p>r/memeIndia</p>
+            </div>
+
+            <div class="box">
+              <img src="mainIImages/c++.png" alt="" class="comunityimage" />
+              <p>r/cplusplus</p>
+            </div>
+
+            <div class="box">
+              <img
+                src="mainIImages/logoimage.jpg"
+                alt=""
+                class="comunityimage"
+              />
+              <p>r/English</p>
+            </div>
+          </div>
+
+          <div class="line">
+            <hr />
+          </div>
+
+          <div class="fourth-box">
+            <div class="box newBox">
+              <h4 class="heading-resor">RESOURCES</h4>
+            </div>
+            <div class="box newBox">
+              <img src="mainIImages/imgabout.png" alt="" />
+              <a href="about/about.html">About ReddiX</a>
+            </div>
+            <div class="box newBox">
+              <img src="mainIImages/advertise.png" alt="" />
+              <a href="about/about.html">Advertise</a>
+            </div>
+            <div class="box newBox">
+              <img src="mainIImages/press.png" alt="" />
+              <a href="about/values.html">Reddit Pro</a>
+            </div>
+            <div class="box newBox">
+              <img src="mainIImages/helpimg.png" alt="" />
+              <a href="/Social-Media-Project/outer/HelpNipun/Help_Section.html">Help</a>
+            </div>
+            <div class="box newBox">
+              <img src="mainIImages/blog.png" alt="" />
+              <a href="/Social-Media-Project/outer/HelpNipun/ModeratorNipun2/moderator.html">BLog</a>
+            </div>
+            <div class="box newBox">
+              <img src="mainIImages/press.png" alt="" />
+              <a href="/Social-Media-Project/outer/NAvdesshFolder/accessibility.html">Press</a>
+            </div>
+
+            <div class="line">
+              <hr />
+            </div>
+
+            <div class="box newBox">
+              <img src="mainIImages/comuunites.png" alt="" />
+              <a href="/Social-Media-Project/outer/communites1/index.html">Communites</a>
+            </div>
+            <div class="box newBox">
+              <img src="mainIImages/best.png" alt="" />
+              <a href="/Social-Media-Project/outer/communites1/index.html">Best Of ReddiX</a>
+            </div>
+
+            <div class="box newBox">
+              <img src="mainIImages/imgabout.png" alt="" />
+              <a href="/Social-Media-Project/outer/NAvdesshFolder/accessibility.html">Accessibilites</a>
+            </div>
+
+            <div class="line">
+              <hr />
+            </div>
+
+            <div class="box newBox">
+              <img src="mainIImages/rules.png" alt="" />
+              <a href="/Social-Media-Project/outer/HelpNipun/RedixxFolder3/reddix.html">ReddiX Rules</a>
+            </div>
+            <div class="box newBox">
+              <img src="mainIImages/privacy.png" alt="" />
+              <a href="/Social-Media-Project/outer/NAvdesshFolder/privacy.html">Privacy Policy</a>
+            </div>
+
+            <div class="box newBox">
+              <img src="mainIImages/accesss.png" alt="" />
+              <a href="/Social-Media-Project/outer/NAvdesshFolder/accessibility.html">Accesibilites</a>
+            </div>
+
+            <div class="space"></div>
+          </div>
+        </div>
+
+        <div class="partion-2">
+          <div class="main-conatiner" id="postsContainer">
+            <!-- Posts will be dynamically added here -->
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Create Post Modal -->
+    <div class="modal-overlay hidden" id="createPostModal">
+      <div class="create-post-modal">
+        <div class="modal-header">
+          <h2>Create a post</h2>
+          <button class="close-modal" id="closeModalBtn">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="communitySelect">Choose a community</label>
+            <select id="communitySelect" class="form-control">
+              <option value="r/SportsIndia">r/SportsIndia</option>
+              <option value="r/Pikachu">r/Pikachu</option>
+              <option value="r/memeIndia">r/memeIndia</option>
+              <option value="r/cplusplus">r/cplusplus</option>
+              <option value="r/English">r/English</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="postTitle">Title</label>
+            <input
+              type="text"
+              id="postTitle"
+              class="form-control"
+              placeholder="Add a title"
+            />
+          </div>
+          <div class="form-group">
+            <label for="postContent">Post content (optional)</label>
+            <textarea
+              id="postContent"
+              class="form-control"
+              rows="4"
+              placeholder="What would you like to post?"
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <label for="postImage">Image URL (optional)</label>
+            <input
+              type="text"
+              id="postImage"
+              class="form-control"
+              placeholder="Paste image URL here"
+            />
+            <div class="image-preview" id="imagePreview">
+              <img src="" alt="Image preview" />
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-cancel" id="cancelPostBtn">Cancel</button>
+          <button class="btn btn-submit" id="submitPostBtn">Post</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="/Social-Media-Project/outer/javascript/Script3.js"></script>
+   
+  </body>
+</html>
