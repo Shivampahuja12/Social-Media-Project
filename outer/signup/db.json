@@ -1,0 +1,39 @@
+{
+  "users": [
+    {
+      "id": "1762103183490",
+      "name": "parth",
+      "email": "parthsohal10@gmail.com",
+      "password": "12345678",
+      "createdAt": "2025-11-02T17:06:23.490Z"
+    },
+    {
+      "id": "1762103226566",
+      "name": "Nipun",
+      "email": "gandu123@gmail.com",
+      "password": "12345678",
+      "createdAt": "2025-11-02T17:07:06.566Z"
+    },
+    {
+      "id": "1762103362547",
+      "name": "navdesh",
+      "email": "nav@gmail.com",
+      "password": "12345678",
+      "createdAt": "2025-11-02T17:09:22.547Z"
+    },
+    {
+      "id": "1762104224923",
+      "name": "don3",
+      "email": "don3@gmail.com",
+      "password": "123456789",
+      "createdAt": "2025-11-02T17:23:44.923Z"
+    },
+    {
+      "id": "1762104274327",
+      "name": "parth",
+      "email": "aerstdyfugiih@gmail.com",
+      "password": "wres345",
+      "createdAt": "2025-11-02T17:24:34.327Z"
+    }
+  ]
+}
