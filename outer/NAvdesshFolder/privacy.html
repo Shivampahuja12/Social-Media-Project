@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Reddix Privacy Policy</title>
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <style>
     @keyframes fadeIn {
       from {
@@ -16,6 +19,12 @@
       }
     }
 
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
     body {
       font-family: 'Inter', sans-serif;
       line-height: 1.7;
@@ -25,6 +34,7 @@
       color: #e0e0e0;
       background-image: radial-gradient(#2c2c54 1px, transparent 1px);
       background-size: 20px 20px;
+      transition: background-color 0.3s, color 0.3s;
     }
 
     .page-header {
@@ -34,12 +44,23 @@
       text-align: center;
       border-bottom: 5px solid #0056b3;
       clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+      transition: background 0.3s;
     }
 
     .logo {
-      max-width: 140px;
+      width: 140px;
+      height: 50px;
       margin-bottom: 1.5rem;
       filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+      background-color: white;
+      color: #ff4500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.5rem;
+      border-radius: 8px;
+      margin: 0 auto 1.5rem auto;
     }
 
     .page-header h1 {
@@ -89,6 +110,7 @@
       animation: fadeIn 0.5s ease-out forwards;
       animation-delay: calc(var(--i) * 0.1s);
       opacity: 0;
+      cursor: pointer;
     }
 
     section.policy-card:hover {
@@ -105,6 +127,11 @@
       background: linear-gradient(135deg, #007bff, #0056b3);
       border-radius: 50%;
       color: white;
+      transition: transform 0.3s;
+    }
+
+    .policy-card:hover .policy-icon {
+      transform: rotate(15deg);
     }
 
     .policy-icon svg {
@@ -127,63 +154,572 @@
       color: #c0c0c0;
     }
 
+    /* New styles for enhanced functionality */
+    .expanded-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+      margin-top: 1rem;
+    }
+
+    .expanded-content.active {
+      max-height: 500px;
+    }
+
+    .expanded-content ul {
+      padding-left: 1.5rem;
+    }
+
+    .expanded-content li {
+      margin-bottom: 0.5rem;
+    }
+
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .theme-toggle, .language-selector {
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      padding: 0.7rem 1.2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: background-color 0.3s;
+    }
+
+    .theme-toggle:hover, .language-selector:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .theme-toggle svg, .language-selector svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .language-selector select {
+      background: transparent;
+      border: none;
+      color: white;
+      outline: none;
+    }
+
+    .language-selector select option {
+      background-color: #2c2c54;
+      color: white;
+    }
+
+    .search-container {
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .search-container input {
+      width: 100%;
+      padding: 1rem 1rem 1rem 2.5rem;
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      color: white;
+      font-size: 1rem;
+    }
+
+    .search-container svg {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 18px;
+      height: 18px;
+      fill: #c0c0c0;
+    }
+
+    .highlight {
+      background-color: rgba(255, 215, 0, 0.3);
+      padding: 0.1rem 0.2rem;
+      border-radius: 3px;
+    }
+
+    .policy-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .policy-action {
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      transition: background-color 0.3s;
+    }
+
+    .policy-action:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .policy-action svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .policy-card.active {
+      border-color: #58a6ff;
+      box-shadow: 0 8px 32px rgba(88, 166, 255, 0.3);
+    }
+
+    .last-updated {
+      text-align: center;
+      margin-top: 3rem;
+      padding: 1rem;
+      background-color: rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      color: #a0a0a0;
+    }
+
+    .light-mode {
+      background-color: #f5f7fa;
+      color: #333;
+      background-image: radial-gradient(#d0d7e7 1px, transparent 1px);
+    }
+
+    .light-mode .page-header {
+      background: linear-gradient(135deg, #4da6ff, #007bff);
+    }
+
+    .light-mode .intro-text,
+    .light-mode .policy-card {
+      background-color: rgba(255, 255, 255, 0.8);
+      color: #333;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .light-mode .policy-content h2 {
+      color: #007bff;
+    }
+
+    .light-mode .policy-content p {
+      color: #555;
+    }
+
+    .light-mode .theme-toggle,
+    .light-mode .language-selector,
+    .light-mode .search-container input,
+    .light-mode .policy-action {
+      background-color: rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      color: #333;
+    }
+
+    .light-mode .theme-toggle:hover,
+    .light-mode .language-selector:hover,
+    .light-mode .policy-action:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .light-mode .search-container input::placeholder {
+      color: #777;
+    }
+
+    .light-mode .last-updated {
+      background-color: rgba(0, 0, 0, 0.05);
+      color: #666;
+    }
+
+    .notification {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #4CAF50;
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      z-index: 1000;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    .notification.active {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .notification svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .page-header h1 {
+        font-size: 2.5rem;
+      }
+      
+      .policy-card {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .controls {
+        flex-direction: column;
+      }
+    }
   </style>
-   <link rel="preconnect" href="https://fonts.googleapis.com">
-   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="page-header">
-        <img src="https://i.imgur.com/J4p3p7g.png" alt="Reddix Logo" class="logo">
-        <h1>Reddix Privacy Policy</h1>
-        <p>Your data, your control. Effective September 2025.</p>
-      </header>
+  <div id="root"></div>
 
-  <main class="content">
-     <p class="intro-text">
-        At Reddix, we believe that privacy is a right. We want to empower you to be the master of your identity. This policy explains what little information we collect and how we use it to improve our services for everyone.
-    </p>
-
-    <section class="policy-card" style="--i:1;">
-        <div class="policy-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+    
+    // Main App Component
+    function App() {
+      const [darkMode, setDarkMode] = useState(true);
+      const [language, setLanguage] = useState('en');
+      const [searchQuery, setSearchQuery] = useState('');
+      const [expandedSection, setExpandedSection] = useState(null);
+      const [notification, setNotification] = useState({ show: false, message: '' });
+      
+      // Toggle theme
+      const toggleTheme = () => {
+        setDarkMode(!darkMode);
+      };
+      
+      // Show notification
+      const showNotification = (message) => {
+        setNotification({ show: true, message });
+        setTimeout(() => {
+          setNotification({ show: false, message: '' });
+        }, 3000);
+      };
+      
+      // Apply theme to body
+      useEffect(() => {
+        if (darkMode) {
+          document.body.classList.remove('light-mode');
+        } else {
+          document.body.classList.add('light-mode');
+        }
+      }, [darkMode]);
+      
+      return (
+        <div>
+          <Header />
+          <Controls 
+            darkMode={darkMode}
+            toggleTheme={toggleTheme}
+            language={language}
+            setLanguage={setLanguage}
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+          />
+          <Content 
+            expandedSection={expandedSection}
+            setExpandedSection={setExpandedSection}
+            searchQuery={searchQuery}
+            showNotification={showNotification}
+          />
+          <Footer />
+          <Notification 
+            show={notification.show} 
+            message={notification.message} 
+          />
         </div>
-        <div class="policy-content">
-            <h2>We Collect Minimal Information</h2>
-            <p>We only collect what is necessary to operate Reddix. You don't need to use your real name, and we don't track your precise location. Our goal is a great service, not tracking your every move.</p>
+      );
+    }
+    
+    // Header Component
+    function Header() {
+      return (
+        <header className="page-header">
+          <div className="logo">REDDIX</div>
+          <h1>Reddix Privacy Policy</h1>
+          <p>Your data, your control. Effective September 2025.</p>
+        </header>
+      );
+    }
+    
+    // Controls Component
+    function Controls({ darkMode, toggleTheme, language, setLanguage, searchQuery, setSearchQuery }) {
+      return (
+        <div className="content">
+          <div className="controls">
+            <button className="theme-toggle" onClick={toggleTheme}>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                {darkMode ? (
+                  <path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM6.34 5.16l-1.42 1.42c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l1.42-1.42c.39-.39.39-1.02 0-1.41a.9959.9959 0 0 0-1.41 0zm13.08 12.42l1.42 1.42c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41l-1.42-1.42c-.39-.39-1.02-.39-1.41 0a.9959.9959 0 0 0 0 1.41zM4.92 18.58l1.42-1.42c.39-.39.39-1.02 0-1.41a.9959.9959 0 0 0-1.41 0l-1.42 1.42c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0zm13.08-12.42l-1.42-1.42c-.39-.39-1.02-.39-1.41 0a.9959.9959 0 0 0 0 1.41l1.42 1.42c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41z"/>
+                ) : (
+                  <path d="M9.37 5.51A7.35 7.35 0 0 0 9.1 7.5c0 4.08 3.32 7.4 7.4 7.4.68 0 1.35-.09 1.99-.27A7.014 7.014 0 0 1 12 19c-3.86 0-7-3.14-7-7 0-2.93 1.81-5.45 4.37-6.49zM12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/>
+                )}
+              </svg>
+              {darkMode ? 'Light Mode' : 'Dark Mode'}
+            </button>
+            
+            <div className="language-selector">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12.87 15.07l-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/>
+              </svg>
+              <select value={language} onChange={(e) => setLanguage(e.target.value)}>
+                <option value="en">English</option>
+                <option value="es">Español</option>
+                <option value="fr">Français</option>
+                <option value="de">Deutsch</option>
+              </select>
+            </div>
+          </div>
+          
+          <div className="search-container">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+            </svg>
+            <input 
+              type="text" 
+              placeholder="Search privacy policy..." 
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </div>
         </div>
-    </section>
+      );
+    }
+    
+    // Content Component
+    function Content({ expandedSection, setExpandedSection, searchQuery, showNotification }) {
+      // Policy data with expanded content
+      const policyData = [
+        {
+          id: 1,
+          icon: (
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
+            </svg>
+          ),
+          title: "We Collect Minimal Information",
+          summary: "We only collect what is necessary to operate Reddix. You don't need to use your real name, and we don't track your precise location. Our goal is a great service, not tracking your every move.",
+          expanded: (
+            <div>
+              <p>At Reddix, we believe in data minimization. This means:</p>
+              <ul>
+                <li>We don't require your real name or personal details</li>
+                <li>We don't track your precise location without permission</li>
+                <li>We limit data collection to what's essential for service operation</li>
+                <li>We anonymize data where possible for analytics</li>
+              </ul>
+              <p>Our approach ensures you can enjoy Reddix without compromising your privacy.</p>
+            </div>
+          )
+        },
+        {
+          id: 2,
+          icon: (
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 4c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm0 14c-2.03 0-4.43-.82-6.14-2.88C7.55 15.8 9.68 15 12 15s4.45.8 6.14 2.12C16.43 19.18 14.03 20 12 20z"/>
+            </svg>
+          ),
+          title: "You Are in Control",
+          summary: "You decide what to share. Reddix is a public platform, and your posts and profile are visible. You can browse anonymously without an account. You have full control over your presence.",
+          expanded: (
+            <div>
+              <p>Your privacy controls include:</p>
+              <ul>
+                <li>Choose what personal information to display on your profile</li>
+                <li>Control who can see your posts and comments</li>
+                <li>Browse Reddix without creating an account</li>
+                <li>Delete your account and associated data at any time</li>
+                <li>Export your data for transparency</li>
+              </ul>
+              <p>We provide clear settings and options so you're always in charge of your digital footprint.</p>
+            </div>
+          )
+        },
+        {
+          id: 3,
+          icon: (
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20 6h-4V4c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM10 4h4v2h-4V4zm10 16H4V8h16v12z"/>
+            </svg>
+          ),
+          title: "How We Use Data",
+          summary: "Any data we collect is used primarily to provide and improve our Services. We focus on allowing people to form communities. We do not sell your personal data to third-party data brokers.",
+          expanded: (
+            <div>
+              <p>We use your data responsibly for these purposes:</p>
+              <ul>
+                <li>Providing and maintaining the Reddix platform</li>
+                <li>Personalizing your experience and content recommendations</li>
+                <li>Improving our services based on usage patterns</li>
+                <li>Ensuring platform security and preventing abuse</li>
+                <li>Communicating important service updates</li>
+              </ul>
+              <p>We never sell your personal information to advertisers or data brokers. Our business model focuses on providing value, not exploiting user data.</p>
+            </div>
+          )
+        },
+        {
+          id: 4,
+          icon: (
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/>
+            </svg>
+          ),
+          title: "Data Security is a Priority",
+          summary: "We use modern encryption and secure protocols to protect your information from unauthorized access. Protecting your data is fundamental to earning and keeping your trust.",
+          expanded: (
+            <div>
+              <p>Our security measures include:</p>
+              <ul>
+                <li>End-to-end encryption for sensitive communications</li>
+                <li>Regular security audits and penetration testing</li>
+                <li>Secure data storage with access controls</li>
+                <li>Employee training on data protection best practices</li>
+                <li>Bug bounty program to identify vulnerabilities</li>
+              </ul>
+              <p>We're committed to maintaining the highest security standards and promptly addressing any security concerns that arise.</p>
+            </div>
+          )
+        }
+      ];
+      
+      // Highlight search terms in text
+      const highlightText = (text, query) => {
+        if (!query) return text;
+        
+        const regex = new RegExp(`(${query})`, 'gi');
+        return text.split(regex).map((part, i) => 
+          regex.test(part) ? <span key={i} className="highlight">{part}</span> : part
+        );
+      };
+      
+      return (
+        <main className="content">
+          <p className="intro-text">
+            At Reddix, we believe that privacy is a right. We want to empower you to be the master of your identity. This policy explains what little information we collect and how we use it to improve our services for everyone.
+          </p>
 
-    <section class="policy-card" style="--i:2;">
-      <div class="policy-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 4c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm0 14c-2.03 0-4.43-.82-6.14-2.88C7.55 15.8 9.68 15 12 15s4.45.8 6.14 2.12C16.43 19.18 14.03 20 12 20z"/></svg>
-      </div>
-      <div class="policy-content">
-        <h2>You Are in Control</h2>
-        <p>You decide what to share. Reddix is a public platform, and your posts and profile are visible. You can browse anonymously without an account. You have full control over your presence.</p>
-      </div>
-    </section>
-
-    <section class="policy-card" style="--i:3;">
-        <div class="policy-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20 6h-4V4c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM10 4h4v2h-4V4zm10 16H4V8h16v12z"/></svg>
+          {policyData.map((policy, index) => (
+            <PolicyCard 
+              key={policy.id}
+              policy={policy}
+              index={index}
+              isExpanded={expandedSection === policy.id}
+              setExpandedSection={setExpandedSection}
+              searchQuery={searchQuery}
+              highlightText={highlightText}
+              showNotification={showNotification}
+            />
+          ))}
+        </main>
+      );
+    }
+    
+    // Policy Card Component
+    function PolicyCard({ policy, index, isExpanded, setExpandedSection, searchQuery, highlightText, showNotification }) {
+      const toggleExpanded = () => {
+        setExpandedSection(isExpanded ? null : policy.id);
+      };
+      
+      const handleShare = () => {
+        navigator.clipboard.writeText(`${policy.title}: ${policy.summary}`);
+        showNotification('Policy section copied to clipboard!');
+      };
+      
+      return (
+        <section 
+          className={`policy-card ${isExpanded ? 'active' : ''}`} 
+          style={{'--i': index + 1}}
+          onClick={toggleExpanded}
+        >
+          <div className="policy-icon">
+            {policy.icon}
+          </div>
+          <div className="policy-content">
+            <h2>{highlightText(policy.title, searchQuery)}</h2>
+            <p>{highlightText(policy.summary, searchQuery)}</p>
+            
+            <div className={`expanded-content ${isExpanded ? 'active' : ''}`}>
+              {policy.expanded}
+              
+              <div className="policy-actions">
+                <button 
+                  className="policy-action" 
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleShare();
+                  }}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/>
+                  </svg>
+                  Share Section
+                </button>
+                
+                <button 
+                  className="policy-action"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    window.print();
+                  }}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/>
+                  </svg>
+                  Print
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    }
+    
+    // Footer Component
+    function Footer() {
+      return (
+        <div className="content">
+          <div className="last-updated">
+            Last updated: September 1, 2025 | 
+            <a href="#" style={{color: 'inherit', marginLeft: '0.5rem'}}>View previous versions</a> | 
+            <a href="#" style={{color: 'inherit', marginLeft: '0.5rem'}}>Contact Privacy Team</a>
+          </div>
         </div>
-        <div class="policy-content">
-            <h2>How We Use Data</h2>
-            <p>Any data we collect is used primarily to provide and improve our Services. We focus on allowing people to form communities. We do not sell your personal data to third-party data brokers.</p>
+      );
+    }
+    
+    // Notification Component
+    function Notification({ show, message }) {
+      return (
+        <div className={`notification ${show ? 'active' : ''}`}>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+          </svg>
+          {message}
         </div>
-    </section>
-
-     <section class="policy-card" style="--i:4;">
-      <div class="policy-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
-      </div>
-      <div class="policy-content">
-        <h2>Data Security is a Priority</h2>
-        <p>We use modern encryption and secure protocols to protect your information from unauthorized access. Protecting your data is fundamental to earning and keeping your trust.</p>
-      </div>
-    </section>
-  </main>
+      );
+    }
+    
+    // Render the App
+    ReactDOM.render(<App />, document.getElementById('root'));
+  </script>
 </body>
 </html>
-
