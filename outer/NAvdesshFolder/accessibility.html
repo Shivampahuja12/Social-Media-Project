@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Reddix Accessibility</title>
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <style>
     body {
       font-family: 'Inter', sans-serif;
@@ -21,6 +24,7 @@
       justify-content: space-between;
       align-items: center;
       border-bottom: 1px solid #e0e0e0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     }
 
     .header-left {
@@ -29,8 +33,17 @@
     }
 
     .logo {
-      max-width: 100px;
+      width: 120px;
+      height: 40px;
       margin-right: 2rem;
+      background-color: #ff4500;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      border-radius: 4px;
+      font-size: 1.2rem;
     }
 
     .nav-links a {
@@ -132,6 +145,12 @@
         border-radius: 25px;
         border: 1px solid #ccc;
         box-sizing: border-box;
+        transition: box-shadow 0.3s;
+    }
+    
+    .search-bar input:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(255, 69, 0, 0.2);
     }
     
     .search-bar svg {
@@ -149,6 +168,8 @@
       margin: 2rem auto;
       padding: 2rem;
       background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     }
 
     .content-section ul {
@@ -158,66 +179,726 @@
     
     .content-section li {
         margin-bottom: 1.2rem;
+        border-bottom: 1px solid #f0f0f0;
+        padding-bottom: 1rem;
+    }
+    
+    .content-section li:last-child {
+        border-bottom: none;
     }
 
     .content-section a {
         text-decoration: none;
         color: #d93a00;
         font-size: 1.1rem;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        transition: color 0.3s;
     }
     
     .content-section a:hover {
-        text-decoration: underline;
+        color: #ff4500;
+    }
+    
+    .content-section a::before {
+        content: "▶";
+        margin-right: 0.5rem;
+        font-size: 0.8rem;
+        transition: transform 0.3s;
+    }
+    
+    .content-section a.expanded::before {
+        transform: rotate(90deg);
     }
 
+    /* New styles for enhanced functionality */
+    .article-content {
+      margin-top: 1rem;
+      padding: 1.5rem;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    .article-content.active {
+      display: block;
+    }
+    
+    .article-content h2 {
+      margin-top: 0;
+      color: #333;
+    }
+    
+    .article-content p {
+      line-height: 1.6;
+    }
+    
+    .feedback-section {
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid #e0e0e0;
+    }
+    
+    .feedback-buttons {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .feedback-button {
+      background-color: #f0f0f0;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    
+    .feedback-button:hover {
+      background-color: #e0e0e0;
+    }
+    
+    .feedback-button.helpful {
+      background-color: #e6f7e9;
+    }
+    
+    .feedback-button.not-helpful {
+      background-color: #ffe6e6;
+    }
+    
+    .search-results {
+      margin-top: 1rem;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      max-height: 300px;
+      overflow-y: auto;
+      display: none;
+      border: 1px solid #e0e0e0;
+    }
+    
+    .search-results.active {
+      display: block;
+    }
+    
+    .search-result-item {
+      padding: 1rem;
+      border-bottom: 1px solid #e0e0e0;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    
+    .search-result-item:hover {
+      background-color: #f5f5f5;
+    }
+    
+    .search-result-item:last-child {
+      border-bottom: none;
+    }
+    
+    .accessibility-settings {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1.5rem 2rem;
+      background-color: #f0f8ff;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    
+    .accessibility-settings h2 {
+      margin-top: 0;
+      color: #333;
+    }
+    
+    .settings-toggle {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    
+    .settings-toggle input {
+      margin-right: 0.5rem;
+    }
+    
+    .settings-toggle label {
+      font-weight: 500;
+    }
+    
+    .article-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    
+    .action-button {
+      background-color: #f0f0f0;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: background-color 0.3s;
+    }
+    
+    .action-button:hover {
+      background-color: #e0e0e0;
+    }
+    
+    .action-button svg {
+      width: 16px;
+      height: 16px;
+    }
+    
+    .dark-mode {
+      background-color: #1a1a1a;
+      color: #f0f0f0;
+    }
+    
+    .dark-mode .header,
+    .dark-mode .content-section {
+      background-color: #2d2d2d;
+      color: #f0f0f0;
+      border-color: #444;
+    }
+    
+    .dark-mode .search-section {
+      background-color: #3a3a3a;
+    }
+    
+    .dark-mode .article-content {
+      background-color: #3a3a3a;
+    }
+    
+    .dark-mode .search-results {
+      background-color: #2d2d2d;
+      border-color: #444;
+    }
+    
+    .dark-mode .search-result-item:hover {
+      background-color: #3a3a3a;
+    }
+    
+    .dark-mode .accessibility-settings {
+      background-color: #3a3a3a;
+    }
+    
+    .dark-mode .action-button,
+    .dark-mode .feedback-button {
+      background-color: #3a3a3a;
+      color: #f0f0f0;
+    }
+    
+    .dark-mode .action-button:hover,
+    .dark-mode .feedback-button:hover {
+      background-color: #4a4a4a;
+    }
+    
+    .high-contrast {
+      background-color: #000;
+      color: #fff;
+    }
+    
+    .high-contrast .header,
+    .high-contrast .content-section {
+      background-color: #000;
+      color: #fff;
+      border-color: #fff;
+    }
+    
+    .high-contrast .search-section {
+      background-color: #333;
+    }
+    
+    .high-contrast .article-content {
+      background-color: #000;
+      border: 1px solid #fff;
+    }
+    
+    .high-contrast .search-results {
+      background-color: #000;
+      border: 1px solid #fff;
+    }
+    
+    .high-contrast .search-result-item {
+      border-color: #fff;
+    }
+    
+    .high-contrast .search-result-item:hover {
+      background-color: #333;
+    }
+    
+    .high-contrast .accessibility-settings {
+      background-color: #000;
+      border: 1px solid #fff;
+    }
+    
+    .high-contrast .action-button,
+    .high-contrast .feedback-button {
+      background-color: #fff;
+      color: #000;
+    }
+    
+    .high-contrast .action-button:hover,
+    .high-contrast .feedback-button:hover {
+      background-color: #ccc;
+    }
+    
+    .font-size-control {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    
+    .font-size-control label {
+      font-weight: 500;
+      margin-right: 1rem;
+      min-width: 120px;
+    }
+    
+    .font-size-control input {
+      flex: 1;
+    }
+    
+    .font-size-value {
+      margin-left: 1rem;
+      min-width: 40px;
+      font-weight: bold;
+    }
+    
+    .stats-section {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1.5rem 2rem;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    
+    .stats-section h2 {
+      margin-top: 0;
+      color: #333;
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    
+    .stat-card {
+      background-color: #f9f9f9;
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: center;
+    }
+    
+    .stat-value {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #ff4500;
+      margin-bottom: 0.5rem;
+    }
+    
+    .stat-label {
+      font-size: 0.9rem;
+      color: #666;
+    }
+    
+    .dark-mode .stats-section,
+    .dark-mode .stat-card {
+      background-color: #2d2d2d;
+      color: #f0f0f0;
+    }
+    
+    .dark-mode .stat-label {
+      color: #ccc;
+    }
+    
+    .high-contrast .stats-section,
+    .high-contrast .stat-card {
+      background-color: #000;
+      color: #fff;
+      border: 1px solid #fff;
+    }
   </style>
-   <link rel="preconnect" href="https://fonts.googleapis.com">
-   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="header">
-        <div class="header-left">
-            <img src="https://i.imgur.com/J4p3p7g.png" alt="Reddix Logo" class="logo">
-            <nav class="nav-links">
-                <a href="#">Moderator Help</a>
-                <a href="#">Redditor Help</a>
-                <a href="#">Ads Help</a>
-                <a href="#">Reddix Pro (Beta) Help</a>
-            </nav>
-        </div>
-        <div class="header-right">
-            <a href="#" class="cta-button">Submit a request</a>
-            <a href="#" class="language-selector">English (US)</a>
-        </div>
-    </header>
+  <div id="root"></div>
 
-    <main>
-        <section class="search-section">
-            <div class="search-container">
-                <p class="breadcrumbs">
-                    <a href="#">Reddix Help</a> &gt; <a href="#">Features & Experiences</a> &gt; Accessibility
-                </p>
-                <h1>Accessibility</h1>
-                <div class="search-bar">
-                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></svg>
-                    <input type="search" placeholder="Search help articles">
-                </div>
-            </div>
-        </section>
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+    
+    // Sample data for articles
+    const articlesData = [
+      {
+        id: 1,
+        title: "Digital Accessibility at Reddix",
+        content: "At Reddix, we're committed to making our platform accessible to everyone. This includes users with visual, auditory, motor, or cognitive disabilities. Our accessibility team works continuously to improve the user experience for all.",
+        tags: ["accessibility", "platform", "commitment"],
+        views: 1250,
+        helpful: 89
+      },
+      {
+        id: 2,
+        title: "Accessibility Improvements/Features",
+        content: "We've recently introduced several accessibility improvements including keyboard navigation enhancements, improved screen reader compatibility, and high contrast mode. These features help make Reddix more usable for everyone.",
+        tags: ["features", "improvements", "keyboard", "screen reader"],
+        views: 980,
+        helpful: 76
+      },
+      {
+        id: 3,
+        title: "Accessibility Guides: An Overview",
+        content: "Our accessibility guides provide detailed instructions on how to use Reddix with various assistive technologies. Whether you're using a screen reader, voice control, or other tools, we have resources to help.",
+        tags: ["guides", "overview", "assistive technology"],
+        views: 750,
+        helpful: 63
+      },
+      {
+        id: 4,
+        title: "Accessibility Guides: Using Screen Readers",
+        content: "Learn how to navigate Reddix using popular screen readers like JAWS, NVDA, and VoiceOver. This guide covers everything from basic navigation to advanced features and shortcuts.",
+        tags: ["screen readers", "guides", "navigation"],
+        views: 1120,
+        helpful: 94
+      },
+      {
+        id: 5,
+        title: "Accessibility Guides: Customizing the Screen Reader Experience (iOS & Android only)",
+        content: "For mobile users, we provide specific guidance on customizing your screen reader experience on iOS and Android devices. Learn how to optimize Reddix for your specific needs and preferences.",
+        tags: ["mobile", "iOS", "Android", "screen readers", "customization"],
+        views: 680,
+        helpful: 57
+      },
+      {
+        id: 6,
+        title: "Accessibility Guides: Reduce Motion & Autoplay",
+        content: "If you're sensitive to motion or prefer a calmer browsing experience, our reduce motion and autoplay settings can help. Learn how to customize these features to create a more comfortable experience.",
+        tags: ["motion", "autoplay", "customization", "comfort"],
+        views: 540,
+        helpful: 48
+      }
+    ];
+    
+    // Main App Component
+    function App() {
+      const [activeArticle, setActiveArticle] = useState(null);
+      const [searchQuery, setSearchQuery] = useState("");
+      const [searchResults, setSearchResults] = useState([]);
+      const [darkMode, setDarkMode] = useState(false);
+      const [highContrast, setHighContrast] = useState(false);
+      const [fontSize, setFontSize] = useState(16);
+      const [helpfulFeedback, setHelpfulFeedback] = useState({});
+      
+      // Handle search functionality
+      useEffect(() => {
+        if (searchQuery.trim() === "") {
+          setSearchResults([]);
+          return;
+        }
         
-        <section class="content-section">
-            <ul>
-                <li><a href="#">Digital Accessibility at Reddix</a></li>
-                <li><a href="#">Accessibility Improvements/Features</a></li>
-                <li><a href="#">Accessibility Guides: An Overview</a></li>
-                <li><a href="#">Accessibility Guides: Using Screen Readers</a></li>
-                <li><a href="#">Accessibility Guides: Customizing the Screen Reader Experience (iOS & Android only)</a></li>
-                <li><a href="#">Accessibility Guides: Reduce Motion & Autoplay</a></li>
-            </ul>
+        const query = searchQuery.toLowerCase();
+        const results = articlesData.filter(article => 
+          article.title.toLowerCase().includes(query) || 
+          article.content.toLowerCase().includes(query) ||
+          article.tags.some(tag => tag.toLowerCase().includes(query))
+        );
+        
+        setSearchResults(results);
+      }, [searchQuery]);
+      
+      // Apply accessibility settings to body
+      useEffect(() => {
+        const body = document.body;
+        
+        if (darkMode) {
+          body.classList.add("dark-mode");
+        } else {
+          body.classList.remove("dark-mode");
+        }
+        
+        if (highContrast) {
+          body.classList.add("high-contrast");
+        } else {
+          body.classList.remove("high-contrast");
+        }
+        
+        body.style.fontSize = `${fontSize}px`;
+      }, [darkMode, highContrast, fontSize]);
+      
+      // Handle feedback submission
+      const handleFeedback = (articleId, isHelpful) => {
+        setHelpfulFeedback(prev => ({
+          ...prev,
+          [articleId]: isHelpful
+        }));
+        
+        // In a real app, you would send this to a server
+        console.log(`Feedback for article ${articleId}: ${isHelpful ? 'helpful' : 'not helpful'}`);
+      };
+      
+      return (
+        <div>
+          <Header />
+          <SearchSection 
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+            searchResults={searchResults}
+            setActiveArticle={setActiveArticle}
+          />
+          <StatsSection articlesData={articlesData} />
+          <ContentSection 
+            activeArticle={activeArticle}
+            setActiveArticle={setActiveArticle}
+            articlesData={articlesData}
+            helpfulFeedback={helpfulFeedback}
+            handleFeedback={handleFeedback}
+          />
+          <AccessibilitySettings 
+            darkMode={darkMode}
+            setDarkMode={setDarkMode}
+            highContrast={highContrast}
+            setHighContrast={setHighContrast}
+            fontSize={fontSize}
+            setFontSize={setFontSize}
+          />
+        </div>
+      );
+    }
+    
+    // Header Component
+    function Header() {
+      return (
+        <header className="header">
+          <div className="header-left">
+            <div className="logo">REDDIX</div>
+            <nav className="nav-links">
+              <a href="#">Moderator Help</a>
+              <a href="#">Redditor Help</a>
+              <a href="#">Ads Help</a>
+              <a href="#">Reddix Pro (Beta) Help</a>
+            </nav>
+          </div>
+          <div className="header-right">
+            <a href="#" className="cta-button">Submit a request</a>
+            <a href="#" className="language-selector">English (US)</a>
+          </div>
+        </header>
+      );
+    }
+    
+    // Search Section Component
+    function SearchSection({ searchQuery, setSearchQuery, searchResults, setActiveArticle }) {
+      return (
+        <section className="search-section">
+          <div className="search-container">
+            <p className="breadcrumbs">
+              <a href="#">Reddix Help</a> &gt; <a href="#">Features & Experiences</a> &gt; Accessibility
+            </p>
+            <h1>Accessibility</h1>
+            <div className="search-bar">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>
+              </svg>
+              <input 
+                type="search" 
+                placeholder="Search help articles"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            </div>
+            
+            {/* Search Results */}
+            <div className={`search-results ${searchResults.length > 0 ? 'active' : ''}`}>
+              {searchResults.map(article => (
+                <div 
+                  key={article.id} 
+                  className="search-result-item"
+                  onClick={() => setActiveArticle(article.id)}
+                >
+                  <h3>{article.title}</h3>
+                  <p>{article.content.substring(0, 100)}...</p>
+                </div>
+              ))}
+            </div>
+          </div>
         </section>
-    </main>
+      );
+    }
+    
+    // Stats Section Component
+    function StatsSection({ articlesData }) {
+      const totalViews = articlesData.reduce((sum, article) => sum + article.views, 0);
+      const totalHelpful = articlesData.reduce((sum, article) => sum + article.helpful, 0);
+      const helpfulRate = Math.round((totalHelpful / totalViews) * 100);
+      
+      return (
+        <section className="stats-section">
+          <h2>Accessibility Resources Overview</h2>
+          <div className="stats-grid">
+            <div className="stat-card">
+              <div className="stat-value">{articlesData.length}</div>
+              <div className="stat-label">Help Articles</div>
+            </div>
+            <div className="stat-card">
+              <div className="stat-value">{totalViews.toLocaleString()}</div>
+              <div className="stat-label">Total Views</div>
+            </div>
+            <div className="stat-card">
+              <div className="stat-value">{totalHelpful.toLocaleString()}</div>
+              <div className="stat-label">Helpful Votes</div>
+            </div>
+            <div className="stat-card">
+              <div className="stat-value">{helpfulRate}%</div>
+              <div className="stat-label">Helpful Rate</div>
+            </div>
+          </div>
+        </section>
+      );
+    }
+    
+    // Content Section Component
+    function ContentSection({ activeArticle, setActiveArticle, articlesData, helpfulFeedback, handleFeedback }) {
+      return (
+        <section className="content-section">
+          <ul>
+            {articlesData.map(article => (
+              <li key={article.id}>
+                <a 
+                  href="#" 
+                  className={activeArticle === article.id ? 'expanded' : ''}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setActiveArticle(activeArticle === article.id ? null : article.id);
+                  }}
+                >
+                  {article.title}
+                </a>
+                
+                {/* Article Content */}
+                <div className={`article-content ${activeArticle === article.id ? 'active' : ''}`}>
+                  <h2>{article.title}</h2>
+                  <p>{article.content}</p>
+                  
+                  {/* Article Stats */}
+                  <div style={{display: 'flex', gap: '1rem', fontSize: '0.9rem', color: '#666', marginTop: '1rem'}}>
+                    <span>Views: {article.views.toLocaleString()}</span>
+                    <span>Helpful: {article.helpful}</span>
+                  </div>
+                  
+                  {/* Article Actions */}
+                  <div className="article-actions">
+                    <button className="action-button">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <path d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/>
+                      </svg>
+                      Save for later
+                    </button>
+                    <button className="action-button">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <path d="M64 464H288c8.8 0 16-7.2 16-16V384h48v64c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V224c0-35.3 28.7-64 64-64h64v48H64c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16zM224 304H448c8.8 0 16-7.2 16-16V64c0-8.8-7.2-16-16-16H224c-8.8 0-16 7.2-16 16V288c0 8.8 7.2 16 16 16zm-64-16V64c0-35.3 28.7-64 64-64H448c35.3 0 64 28.7 64 64V288c0 35.3-28.7 64-64 64H224c-35.3 0-64-28.7-64-64z"/>
+                      </svg>
+                      Print article
+                    </button>
+                    <button className="action-button">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <path d="M16.1 260.2c-22.6 12.9-20.5 47.3 3.6 57.3L160 376V479.3c0 18.1 14.6 32.7 32.7 32.7c9.7 0 18.9-4.3 25.1-11.8l62-74.3 123.9 51.6c18.9 7.9 40.8-4.5 43.9-24.7l64-416c1.9-12.1-3.4-24.3-13.5-31.2s-23.3-7.5-34-1.4l-448 256zm52.1 25.5L409.7 90.6 190.1 336l1.2 1L68.2 285.7zM403.3 425.4L236.7 355.9 450.8 116.6 403.3 425.4z"/>
+                      </svg>
+                      Share
+                    </button>
+                  </div>
+                  
+                  {/* Feedback Section */}
+                  <div className="feedback-section">
+                    <p>Was this article helpful?</p>
+                    <div className="feedback-buttons">
+                      <button 
+                        className={`feedback-button ${helpfulFeedback[article.id] === true ? 'helpful' : ''}`}
+                        onClick={() => handleFeedback(article.id, true)}
+                      >
+                        Yes
+                      </button>
+                      <button 
+                        className={`feedback-button ${helpfulFeedback[article.id] === false ? 'not-helpful' : ''}`}
+                        onClick={() => handleFeedback(article.id, false)}
+                      >
+                        No
+                      </button>
+                    </div>
+                    {helpfulFeedback[article.id] !== undefined && (
+                      <p style={{marginTop: '0.5rem', fontStyle: 'italic'}}>
+                        Thank you for your feedback!
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </section>
+      );
+    }
+    
+    // Accessibility Settings Component
+    function AccessibilitySettings({ 
+      darkMode, setDarkMode, 
+      highContrast, setHighContrast, 
+      fontSize, setFontSize 
+    }) {
+      return (
+        <section className="accessibility-settings">
+          <h2>Accessibility Settings</h2>
+          <p>Customize your reading experience to suit your needs.</p>
+          
+          <div className="settings-toggle">
+            <input 
+              type="checkbox" 
+              id="dark-mode" 
+              checked={darkMode}
+              onChange={(e) => setDarkMode(e.target.checked)}
+            />
+            <label htmlFor="dark-mode">Dark Mode</label>
+          </div>
+          
+          <div className="settings-toggle">
+            <input 
+              type="checkbox" 
+              id="high-contrast" 
+              checked={highContrast}
+              onChange={(e) => setHighContrast(e.target.checked)}
+            />
+            <label htmlFor="high-contrast">High Contrast Mode</label>
+          </div>
+          
+          <div className="font-size-control">
+            <label htmlFor="font-size">Font Size:</label>
+            <input 
+              type="range" 
+              id="font-size" 
+              min="12" 
+              max="24" 
+              value={fontSize}
+              onChange={(e) => setFontSize(parseInt(e.target.value))}
+            />
+            <span className="font-size-value">{fontSize}px</span>
+          </div>
+        </section>
+      );
+    }
+    
+    // Render the App
+    ReactDOM.render(<App />, document.getElementById('root'));
+  </script>
 </body>
 </html>
-
-
